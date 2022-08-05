@@ -1,8 +1,8 @@
 import "./App.css";
-import Header from "./components/Header";
-import NavBar from "./components/NavBar";
-import Profile from "./components/Profile";
-import Footer from "./components/Footer";
+import Header from "./components/Header/Header.jsx";
+import NavBar from "./components/NavBar/NavBar.jsx";
+import Profile from "./components/Profile/Profile.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
   return (

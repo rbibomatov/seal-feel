@@ -1,0 +1,8 @@
+.content {
+  grid-area: c;
+  background-color: #77dde7;
+}
+
+.backgroundProfile {
+  width: 100%;
+}

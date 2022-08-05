@@ -9,31 +9,3 @@
   grid-gap: 10px;
   width: 1600px;
 }
-
-.header {
-  grid-area: h;
-  background-color: #08e8de;
-}
-
-.logo {
-  width: 75px;
-  margin: 0 10px 0 10px;
-}
-.backgroundProfile {
-  width: 100%;
-}
-
-.nav {
-  grid-area: n;
-  background-color: #08e8de;
-}
-
-.content {
-  grid-area: c;
-  background-color: #77dde7;
-}
-
-.footer {
-  grid-area: f;
-  background-color: #d0d0d0;
-}
