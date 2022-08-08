@@ -1,0 +1,20 @@
+.linkWrapper {
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.link {
+  color: black;
+  font-size: xx-large;
+  text-decoration: none;
+  font-family: "Helvetica";
+}
+
+.link.activeLink {
+  color: purple;
+}

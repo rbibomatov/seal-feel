@@ -1,0 +1,8 @@
+.dialog {
+  margin-bottom: 5px;
+  border-bottom: 1px solid gray;
+}
+
+.activeDialog {
+  color: purple;
+}

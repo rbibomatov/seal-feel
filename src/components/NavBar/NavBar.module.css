@@ -3,10 +3,6 @@
   background-color: #08e8de;
 }
 
-.item {
-  color: white;
-}
-
-.item.active {
-  color: purple;
+.linksWrapper {
+  margin: 10px 0 0 10px;
 }
