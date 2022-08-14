@@ -3,14 +3,14 @@
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 5px;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
 }
 
 .link {
   color: black;
-  font-size: xx-large;
+  font-size: x-large;
   text-decoration: none;
   font-family: "Helvetica";
 }
