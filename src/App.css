@@ -1,14 +1,17 @@
 .app-wrapper {
   display: grid;
-  grid-template-rows: 60px auto 60px;
-  grid-template-columns: 2fr 12fr;
+  grid-template-rows: 70px 1fr;
+  grid-template-columns: 240px 1fr;
   grid-template-areas:
     "h h h"
-    "n c c"
-    "f f f";
+    "n c c";
+  font-family: "Helvetica";
 }
 
 .app-wrapper-content {
+  width: 96%;
   grid-area: c;
-  background-color: #77dde7;
+  background-color: #a3e9f0;
+  border-radius: 10px;
+  margin: 15px auto 0 auto;
 }

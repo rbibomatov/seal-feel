@@ -1,8 +1,9 @@
 .nav {
   grid-area: n;
-  background-color: #08e8de;
+  background-color: #d0f4f7;
+  margin: 15px 0 10px 5px;
 }
 
 .linksWrapper {
-  margin: 15px 15px 15px 15px;
+  margin: 5px 0 15px 15px;
 }

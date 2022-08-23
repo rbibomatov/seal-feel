@@ -1,0 +1,39 @@
+.user {
+  display: grid;
+  grid-template-columns: 1fr 12fr;
+  margin: 20px;
+}
+
+.followBar {
+  width: 100px;
+  grid-column: 1/2;
+  margin-right: 15px;
+}
+
+.userAvatar {
+  display: block;
+  width: 75px;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+}
+
+.followButton {
+  display: block;
+  margin: 0 auto;
+}
+
+.userInfo {
+  grid-column: 2/3;
+  border: 1px gray solid;
+  border-radius: 5px;
+}
+
+.userName {
+  margin: 10px;
+  font-size: x-large;
+  color: #6666ff;
+}
+
+.userStatus {
+  margin: 10px;
+}

@@ -1,10 +1,41 @@
-.item {
+.post {
+  width: 88.5%;
+  display: grid;
+  grid-template-columns: 1fr 13fr;
+  grid-template-rows: auto auto auto;
   border: 1px solid grey;
   margin-bottom: 10px;
+  border-radius: 10px;
 }
 
-.item img {
-  width: 50px;
-  height: 50px;
+.userAvatar {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
+  margin: auto 0 auto 10px;
+  padding: 5px;
+  grid-column: 1/2;
+}
+
+.postText {
+  margin: auto 5px;
+  padding: 5px;
+  grid-column: 2/3;
+}
+
+.textAuthor {
+  font-size: large;
+  color: #6666ff;
+  margin-bottom: 7px;
+}
+
+.textMessage {
+  padding: 5px 0;
+  margin-bottom: 5px;
+}
+
+.postTime {
+  color: #6666ff;
+  font-size: 9pt;
+  float: right;
 }

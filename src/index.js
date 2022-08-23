@@ -9,20 +9,14 @@ import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-export let renderTree = () => {
-  root.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </BrowserRouter>
-    </React.StrictMode>
-  );
-};
-
-renderTree(store.getState());
-
-store.subscribe(renderTree);
+root.render(
+  // <React.StrictMode>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
+  // </React.StrictMode>
+);
 
 reportWebVitals();

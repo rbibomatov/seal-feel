@@ -1,18 +1,50 @@
-import profileInfoClasses from "./ProfileInfo.module.css";
+import styles from "./ProfileInfo.module.css";
+import profileBackground from "./../../../../images/Content/Profile/ProfileBackground.jpg";
+import defaultAvatar from "./../../../../images/Common/DefaultUserAvatar.png";
 
 const ProfileInfo = (props) => {
-  let url =
-    "https://www.trn-news.ru/Ru/Upload/Image/rfegf73t4rv3c64tr37egfiuyewr.jpg";
+  let profile = props.profile,
+    profileAvatar;
+
+  if (profile) {
+    if (profile?.photos?.large) {
+      profileAvatar = profile.photos.large;
+    } else {
+      profileAvatar = defaultAvatar;
+    }
+  }
 
   return (
-    <div>
+    <div className={styles.profileInfo}>
       <img
-        className={profileInfoClasses.backgroundProfile}
-        src={url}
+        src={profileBackground}
         alt="Фон профиля"
+        className={styles.profileBackground}
       />
-      <div className={profileInfoClasses.profileDescription}>
-        Ава + описание
+      {
+        // eslint-disable-next-line jsx-a11y/alt-text
+        <img src={profileAvatar} className={styles.profileAvatar} />
+      }
+      <div className={styles.profileDescription}>
+        <div className={styles.descriptionName}>{profile?.fullName}</div>
+        <div className={styles.descriptionItem}>
+          <span className={styles.descriptionItemHeader}>День рождения:</span>
+          <span>16 марта</span>
+        </div>
+        <div className={styles.descriptionItem}>
+          <span className={styles.descriptionItemHeader}>Город:</span>
+          <span>Новосибирск</span>
+        </div>
+        <div className={styles.descriptionItem}>
+          <span className={styles.descriptionItemHeader}>Образование:</span>
+          <span>
+            Новосибирский государственный университет поедания чокопаев (НГУПЧ)
+          </span>
+        </div>
+        <div className={styles.descriptionItem}>
+          <span className={styles.descriptionItemHeader}>Место работы:</span>
+          <span>ООО «Пивоваренная компания «Балтика»</span>
+        </div>
       </div>
     </div>
   );

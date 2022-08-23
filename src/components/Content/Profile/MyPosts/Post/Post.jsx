@@ -1,16 +1,16 @@
-import postClasses from "./Post.module.css";
+import styles from "./Post.module.css";
+import defaultAvatar from "./../../../../../images/Common/DefaultUserAvatar.png";
 
 const Post = (props) => {
   return (
-    <div className={postClasses.item}>
-      <img
-        src="https://farm1.staticflickr.com/339/31250538794_431a1868ea_o.jpg"
-        alt=""
-      />
-      {props.message}
-      <div>
-        <span>like </span>
-        <span>dislike</span>
+    <div className={styles.post}>
+      <img className={styles.userAvatar} src={defaultAvatar} alt="" />
+      <div className={styles.postText}>
+        <div className={styles.textAuthor}>Диана Мирошкина</div>
+        <div className={styles.textMessage}>{props.message}</div>
+        <div className={styles.postTime}>
+          {new Date().toTimeString().slice(0, 5)}
+        </div>
       </div>
     </div>
   );

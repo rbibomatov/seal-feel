@@ -1,7 +1,7 @@
-import messageClasses from "./Message.module.css";
+import styles from "./Message.module.css";
 
 const Message = (props) => {
-  return <div className={messageClasses.message}>{props.message}</div>;
+  return <div className={styles.message}>{props.message}</div>;
 };
 
 export default Message;

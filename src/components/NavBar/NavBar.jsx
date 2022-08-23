@@ -1,19 +1,22 @@
-import NavBarClasses from "./NavBar.module.css";
+import styles from "./NavBar.module.css";
 import NavBarLink from "./NavBarLink/NavBarLink";
-import logoNews from "./NavBarLink/Icons/News.png";
-import logoMessages from "./NavBarLink/Icons/Messages.png";
-import logoMusic from "./NavBarLink/Icons/Music.png";
-import logoProfile from "./NavBarLink/Icons/Profile.png";
-import logoSettings from "./NavBarLink/Icons/Settings.png";
+
+import logoProfile from "./../../images/NavBar/Profile.png";
+import logoNews from "./../../images/NavBar/News.png";
+import logoMessages from "./../../images/NavBar/Messages.png";
+import logoUsers from "./../../images/NavBar/Users.png";
+import logoMusic from "./../../images/NavBar/Music.png";
+import logoSettings from "./../../images/NavBar/Settings.png";
 
 const NavBar = () => {
   return (
-    <nav className={NavBarClasses.nav}>
-      <div className={NavBarClasses.linksWrapper}>
+    <nav className={styles.nav}>
+      <div className={styles.linksWrapper}>
+        <NavBarLink to="/profile" name="Профиль" image={logoProfile} />
         <NavBarLink to="/news" name="Новости" image={logoNews} />
         <NavBarLink to="/messages" name="Сообщения" image={logoMessages} />
+        <NavBarLink to="/users" name="Пользователи" image={logoUsers} />
         <NavBarLink to="/music" name="Музыка" image={logoMusic} />
-        <NavBarLink to="/profile" name="Профиль" image={logoProfile} />
         <NavBarLink to="/settings" name="Настройки" image={logoSettings} />
       </div>
     </nav>

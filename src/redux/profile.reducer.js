@@ -1,37 +1,53 @@
-const UPDATE_POST_TEXT = "UPDATE_POST_TEXT";
 const ADD_POST = "ADD_POST";
+const UPDATE_POST_TEXT = "UPDATE_POST_TEXT";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 let initialState = {
+  profile: null,
   posts: [],
-  newPostText: "",
+  postText: "",
 };
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_POST_TEXT:
-      state.newPostText = action.newText;
-      return { ...state };
     case ADD_POST:
       let newPost = {
         id: state.posts.length,
-        message: state.newPostText,
+        message: state.postText,
         likesCount: 0,
         dislikeCount: 0,
       };
 
-      state.posts.push(newPost);
-      state.newPostText = "";
-      return { ...state };
+      return {
+        ...state,
+        posts: [...state.posts, newPost],
+        postText: "",
+      };
+
+    case UPDATE_POST_TEXT:
+      return {
+        ...state,
+        postText: action.postText,
+      };
+
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        profile: action.profile,
+      };
     default:
-      return { ...state };
+      return state;
   }
 };
 
-export const updatePostTextActionCreator = (text) => {
-  return { type: "UPDATE_POST_TEXT", newText: text };
+export const addPostAC = () => {
+  return { type: ADD_POST };
 };
-export const addPostActionCreator = () => {
-  return { type: "ADD_POST" };
+export const updatePostTextAC = (postText) => {
+  return { type: UPDATE_POST_TEXT, postText };
+};
+export const setUserProfileAC = (profile) => {
+  return { type: SET_USER_PROFILE, profile };
 };
 
 export default profileReducer;

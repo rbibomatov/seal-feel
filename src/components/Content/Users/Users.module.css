@@ -1,0 +1,13 @@
+.pagePanel {
+  text-align: center;
+}
+
+.page {
+  font-size: larger;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.currentPage {
+  font-size: xx-large;
+}
