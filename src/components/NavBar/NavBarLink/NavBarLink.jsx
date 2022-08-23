@@ -1,11 +1,11 @@
-import NavBarLinkClasses from "./NavBarLink.module.css";
+import styles from "./NavBarLink.module.css";
 import { NavLink } from "react-router-dom";
 
 const setActive = ({ isActive }) => {
-  let classes = NavBarLinkClasses.link;
+  let classes = styles.link;
 
   if (isActive) {
-    classes += " " + NavBarLinkClasses.activeLink;
+    classes += " " + styles.activeLink;
   }
 
   return classes;
@@ -13,9 +13,9 @@ const setActive = ({ isActive }) => {
 
 const NavBarLink = (props) => {
   return (
-    <div className={NavBarLinkClasses.linkWrapper}>
-      <img className={NavBarLinkClasses.icon} src={props.image} alt="" />
+    <div className={styles.linkWrapper}>
       <NavLink to={props.to} className={setActive}>
+        <img className={styles.icon} src={props.image} alt="" />
         {props.name}
       </NavLink>
     </div>

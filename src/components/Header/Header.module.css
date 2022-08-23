@@ -1,9 +1,30 @@
 .header {
   grid-area: h;
-  background-color: #d0d0d0;
+  background-color: #a3e9f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  width: 75px;
-  margin: 0 10px 0 10px;
+  width: 160px;
+  margin-left: 10px;
+}
+
+.profileBar {
+  margin-right: 40px;
+}
+
+.userAvatar {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.userName {
+  float: right;
+  position: relative;
+  top: 18px;
+  color: black;
+  font-size: large;
 }

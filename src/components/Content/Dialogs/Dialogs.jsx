@@ -1,5 +1,5 @@
 import React from "react";
-import dialogsClasses from "./Dialogs.module.css";
+import styles from "./Dialogs.module.css";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 
@@ -8,7 +8,9 @@ const Dialogs = (props) => {
   let newMessageElement = React.createRef();
 
   let onSendMessage = () => {
-    props.sendMessage(messagesPage.newMessageText);
+    if (messagesPage.newMessageText) {
+      props.sendMessage(messagesPage.newMessageText);
+    }
   };
   let onChangeMessage = () => {
     let text = newMessageElement.current.value;
@@ -16,17 +18,29 @@ const Dialogs = (props) => {
   };
 
   let dialogsElements = messagesPage.dialogs.map((dialogData) => {
-    return <Dialog id={dialogData.id} name={dialogData.name} />;
+    return (
+      <Dialog
+        id={dialogData.id}
+        key={"dialog_" + dialogData.id}
+        name={dialogData.name}
+      />
+    );
   });
   let messagesElements = messagesPage.messages.map((messageData) => {
-    return <Message id={messageData.id} message={messageData.message} />;
+    return (
+      <Message
+        id={messageData.id}
+        key={"message_" + messageData.id}
+        message={messageData.message}
+      />
+    );
   });
 
   return (
-    <div className={dialogsClasses.dialogs}>
-      <div className={dialogsClasses.dialogsItems}>{dialogsElements}</div>
-      <div className={dialogsClasses.messages}>{messagesElements}</div>
-      <div className={dialogsClasses.newMessage}>
+    <div className={styles.dialogs}>
+      <div className={styles.dialogsItems}>{dialogsElements}</div>
+      <div className={styles.messages}>{messagesElements}</div>
+      <div className={styles.newMessage}>
         <textarea
           ref={newMessageElement}
           cols="50"

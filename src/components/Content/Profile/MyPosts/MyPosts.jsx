@@ -1,5 +1,5 @@
 import React from "react";
-import myPostsClasses from "./MyPosts.module.css";
+import styles from "./MyPosts.module.css";
 import Post from "./Post/Post.jsx";
 
 const MyPosts = (props) => {
@@ -7,7 +7,9 @@ const MyPosts = (props) => {
   let newPostElement = React.createRef();
 
   let onAddPost = () => {
-    props.addPost(profilePage.newPostText);
+    if (profilePage.postText) {
+      props.addPost(profilePage.postText);
+    }
   };
   let onChangePost = () => {
     let text = newPostElement.current.value;
@@ -15,22 +17,22 @@ const MyPosts = (props) => {
   };
 
   let postsElements = profilePage.posts.map((post) => {
-    return <Post id={post.id} message={post.message} />;
+    return <Post id={post.id} key={"post_" + post.id} message={post.message} />;
   });
 
   return (
-    <div className={myPostsClasses.myPosts}>
-      <div className={myPostsClasses.addPostForm}>
+    <div className={styles.myPosts}>
+      <div className={styles.addPostForm}>
         <textarea
           ref={newPostElement}
-          cols="100"
+          cols="120"
           rows="5"
-          value={profilePage.newPostText}
-          placeholder="Расскажите, как у вас дела"
+          value={profilePage.postText}
+          placeholder="Расскажите, как у вас дела?"
           onChange={onChangePost}
         />
         <div>
-          <button onClick={onAddPost}>Add</button>
+          <button onClick={onAddPost}>Опубликовать</button>
         </div>
       </div>
       {postsElements}
