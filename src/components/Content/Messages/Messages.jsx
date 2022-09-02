@@ -1,15 +1,15 @@
 import React from "react";
-import styles from "./Dialogs.module.css";
+import styles from "./Messages.module.css";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 
-const Dialogs = (props) => {
+const Messages = (props) => {
   let messagesPage = props.messagesPage;
   let newMessageElement = React.createRef();
 
   let onSendMessage = () => {
     if (messagesPage.newMessageText) {
-      props.sendMessage(messagesPage.newMessageText);
+      props.addMessage(messagesPage.newMessageText);
     }
   };
   let onChangeMessage = () => {
@@ -57,4 +57,4 @@ const Dialogs = (props) => {
   );
 };
 
-export default Dialogs;
+export default Messages;

@@ -1,62 +1,36 @@
 import React from "react";
-import axios from "axios";
-import Users from "./Users";
+import { compose } from "redux";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import { connect } from "react-redux";
 import {
-  setUsersAC,
-  setPageAC,
-  setTotalUsersCountAC,
-  toogleIsFetchingAC,
-  followAC,
-  unfollowAC,
+  setPage,
+  getUsers,
+  followUser,
+  unfollowUser,
 } from "../../../redux/users.reducer";
 import Preloader from "../../Common/Preloader/Preloader";
+import Users from "./Users";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.toogleIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
-        if (response.data && response.data.items) {
-          this.props.toogleIsFetching(false);
-          this.props.setUsers(response.data.items);
-          this.props.setTotalUsersCount(response.data.totalCount);
-        }
-      });
+    this.props.getUsers(
+      this.props.usersPage.currentPage,
+      this.props.usersPage.pageSize
+    );
   }
+
   onClickPage = (page) => {
-    this.props.toogleIsFetching(true);
     this.props.setPage(page);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
-        this.props.toogleIsFetching(false);
-        if (response.data && response.data.items) {
-          this.props.setUsers(response.data.items);
-        }
-      });
+    this.props.getUsers(page, this.props.usersPage.pageSize);
   };
+
   render() {
     return (
       <>
-        {this.props.isFetching ? (
+        {this.props.usersPage.usersInProgress ? (
           <Preloader />
         ) : (
-          <Users
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            currentPage={this.props.currentPage}
-            onClickPage={this.onClickPage}
-            isFetching={this.isFetching}
-            users={this.props.users}
-            followUser={this.props.followUser}
-            unfollowUser={this.props.unfollowUser}
-          />
+          <Users {...this.props} onClickPage={this.onClickPage} />
         )}
       </>
     );
@@ -65,19 +39,16 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
+    usersPage: state.usersPage,
   };
 };
 
-export default connect(mapStateToProps, {
-  setUsers: setUsersAC,
-  setPage: setPageAC,
-  setTotalUsersCount: setTotalUsersCountAC,
-  toogleIsFetching: toogleIsFetchingAC,
-  followUser: followAC,
-  unfollowUser: unfollowAC,
-})(UsersContainer);
+export default compose(
+  connect(mapStateToProps, {
+    setPage,
+    getUsers,
+    followUser,
+    unfollowUser,
+  }),
+  withAuthRedirect
+)(UsersContainer);

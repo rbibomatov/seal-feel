@@ -26,5 +26,13 @@
   position: relative;
   top: 18px;
   color: black;
-  font-size: large;
+  font-size: 16pt;
+}
+
+.loginButton {
+  margin-right: 40px;
+  top: 18px;
+  font-size: 16pt;
+  text-decoration: none;
+  color: black;
 }

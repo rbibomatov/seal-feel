@@ -4,46 +4,117 @@ import defaultAvatar from "./../../../../images/Common/DefaultUserAvatar.png";
 
 const ProfileInfo = (props) => {
   let profile = props.profile,
-    profileAvatar;
+    contacts = props.profile?.contacts;
 
-  if (profile) {
-    if (profile?.photos?.large) {
-      profileAvatar = profile.photos.large;
+  const showAvatar = (profilePhoto) => {
+    let profileAvatar;
+
+    if (profilePhoto) {
+      profileAvatar = profilePhoto;
     } else {
       profileAvatar = defaultAvatar;
     }
-  }
+
+    return profileAvatar;
+  };
+
+  const showDescriptionContent = (itemHeader, profileData, createRef) => {
+    if (profile) {
+      let descriptionItems = [],
+        emptyDataCount = 0,
+        noDataElement = <div>Информация отсутствует</div>;
+
+      for (let i = 0; i < profileData.length; i++) {
+        let profileElement = profileData[i];
+
+        if (profileElement) {
+          if (typeof profileElement === "boolean") {
+            profileElement = profileElement ? "Да" : "Нет";
+          }
+
+          descriptionItems.push(
+            <div className={styles.descriptionItem}>
+              <span className={styles.descriptionItemHeader}>
+                {itemHeader[i] + ":"}
+              </span>
+              {createRef ? (
+                <a
+                  href={"https://" + profileElement}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {profileElement}
+                </a>
+              ) : (
+                <span>{profileElement}</span>
+              )}
+            </div>
+          );
+        } else {
+          emptyDataCount++;
+        }
+      }
+
+      return emptyDataCount === profileData.length
+        ? noDataElement
+        : descriptionItems;
+    }
+  };
 
   return (
     <div className={styles.profileInfo}>
       <img
+        className={styles.profileBackground}
         src={profileBackground}
         alt="Фон профиля"
-        className={styles.profileBackground}
       />
       {
         // eslint-disable-next-line jsx-a11y/alt-text
-        <img src={profileAvatar} className={styles.profileAvatar} />
+        <img
+          className={styles.profileAvatar}
+          src={showAvatar(profile?.photos.large)}
+        />
       }
       <div className={styles.profileDescription}>
-        <div className={styles.descriptionName}>{profile?.fullName}</div>
-        <div className={styles.descriptionItem}>
-          <span className={styles.descriptionItemHeader}>День рождения:</span>
-          <span>16 марта</span>
+        <div className={styles.profileName}>{profile?.fullName}</div>
+        <div className={styles.descriptionBlock}>
+          <div className={styles.descriptionInfo}>
+            <div className={styles.descriptionName}>Обо мне:</div>
+            {showDescriptionContent(
+              ["Статус", "Ищу работу", "Описание исковой работы"],
+              [
+                profile?.aboutMe,
+                profile?.lookingForAJob,
+                profile?.lookingForAJobDescription,
+              ]
+            )}
+          </div>
         </div>
-        <div className={styles.descriptionItem}>
-          <span className={styles.descriptionItemHeader}>Город:</span>
-          <span>Новосибирск</span>
-        </div>
-        <div className={styles.descriptionItem}>
-          <span className={styles.descriptionItemHeader}>Образование:</span>
-          <span>
-            Новосибирский государственный университет поедания чокопаев (НГУПЧ)
-          </span>
-        </div>
-        <div className={styles.descriptionItem}>
-          <span className={styles.descriptionItemHeader}>Место работы:</span>
-          <span>ООО «Пивоваренная компания «Балтика»</span>
+        <div className={styles.descriptionBlock}>
+          <div className={styles.descriptionInfo}>
+            <div className={styles.descriptionName}>Контакты:</div>
+            {showDescriptionContent(
+              [
+                "Facebook",
+                "Website",
+                "VK",
+                "Twitter",
+                "Instagram",
+                "Youtube",
+                "Github",
+              ],
+              [
+                contacts?.facebook,
+                contacts?.website,
+                contacts?.vk,
+                contacts?.twitter,
+                contacts?.instagram,
+                contacts?.youtube,
+                contacts?.github,
+              ],
+              true
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -3,13 +3,27 @@ import User from "./User/User";
 import defaultAvatar from "./../../../images/Common/DefaultUserAvatar.png";
 
 const Users = (props) => {
+  let userpage = props.usersPage;
   let pages = [];
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  for (let i = 1; i <= 5; i++) {
+  let pagesCount = Math.ceil(userpage.totalUsersCount / userpage.pageSize);
+
+  let currentPage = userpage.currentPage;
+  let startPage = currentPage - 4 < 1 ? 1 : currentPage - 4;
+  let endPage = currentPage + 4 < pagesCount ? currentPage + 4 : pagesCount;
+
+  for (let i = startPage; i <= endPage; i++) {
+    if (i === startPage && startPage - 1 > 0) {
+      pages.push(1, "«");
+    }
+
     pages.push(i);
+
+    if (i === endPage && endPage + 1 <= pagesCount) {
+      pages.push("»", pagesCount);
+    }
   }
 
-  let usersElements = props.users.map((user, index) => {
+  let usersElements = userpage.users.map((user) => {
     let userAvatar;
     if (user.photos?.large) {
       userAvatar = user.photos.large;
@@ -20,33 +34,45 @@ const Users = (props) => {
     return (
       <User
         id={user.id}
-        // С учетом отсутствия в API фото - вместо одинаковой для всех заглушки используется массив из 10 аватарок
         photo={userAvatar}
         name={user.name}
         status={user.status}
         followed={user.followed}
         followUser={props.followUser}
         unfollowUser={props.unfollowUser}
+        followingInProgress={userpage.followingInProgress}
       />
+    );
+  });
+
+  let pagesElements = pages.map((page) => {
+    return (
+      <span
+        className={
+          styles.page + (currentPage === page ? " " + styles.currentPage : "")
+        }
+        onClick={() => {
+          let switchedPage = page;
+
+          if (page === "«") {
+            switchedPage = currentPage - 5;
+          } else if (page === "»") {
+            switchedPage = currentPage + 5;
+          }
+
+          props.onClickPage(switchedPage);
+        }}
+      >
+        {page}
+      </span>
     );
   });
 
   return (
     <div>
       <div className={styles.pagePanel}>
-        {pages.map((page) => {
-          return (
-            <span
-              className={
-                styles.page +
-                (props.currentPage === page ? " " + styles.currentPage : "")
-              }
-              onClick={() => props.onClickPage(page)}
-            >
-              {page}
-            </span>
-          );
-        })}
+        {/* <span>{"Пользователей: " + userpage.totalUsersCount}</span> */}
+        {pagesElements}
       </div>
       {usersElements}
     </div>

@@ -1,21 +1,22 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header/Header.jsx";
-import NavBar from "./components/NavBar/NavBar.jsx";
+import LoginPage from "./components/Login/Login.jsx";
+import HeaderContainer from "./components/Header/HeaderContainer.jsx";
+import NavBarContainer from "./components/NavBar/NavBarContainer.jsx";
 import ProfileContainer from "./components/Content/Profile/ProfileContainer";
-import DialogsContainer from "./components/Content/Dialogs/DialogsContainer.jsx";
+import MessagesContainer from "./components/Content/Messages/MessagesContainer.jsx";
 import UsersContainer from "./components/Content/Users/UsersContainer";
 
 function App(props) {
   return (
     <div className="app-wrapper">
-      <Header />
-      <NavBar />
+      <HeaderContainer />
+      <NavBarContainer />
       <div className="app-wrapper-content">
         <Routes>
-          <Route path="/profile/" element={<ProfileContainer />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/profile/:userId" element={<ProfileContainer />} />
-          <Route path="/messages/*" element={<DialogsContainer />} />
+          <Route path="/messages/*" element={<MessagesContainer />} />
           <Route path="/users/*" element={<UsersContainer />} />
         </Routes>
       </div>

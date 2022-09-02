@@ -43,10 +43,10 @@ const messagesReducer = (state = initialState, action) => {
   }
 };
 
-export const addMessageAC = () => {
+export const addMessage = () => {
   return { type: ADD_MESSAGE };
 };
-export const updateMessageTextAC = (text) => {
+export const updateMessageText = (text) => {
   return { type: UPDATE_MESSAGE_TEXT, newText: text };
 };
 

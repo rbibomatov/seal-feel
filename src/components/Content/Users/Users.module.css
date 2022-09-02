@@ -1,13 +1,26 @@
 .pagePanel {
   text-align: center;
+  margin-top: 10px;
 }
 
 .page {
-  font-size: larger;
+  display: inline-block;
+  background-color: #e6e6e6;
+  border: 1px gray solid;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 14pt;
   margin: 0 5px;
   cursor: pointer;
 }
 
+.page:hover {
+  background-color: #6666ff;
+  color: white;
+}
+
 .currentPage {
-  font-size: xx-large;
+  font-size: 16pt;
+  background-color: #6666ff;
+  color: white;
 }

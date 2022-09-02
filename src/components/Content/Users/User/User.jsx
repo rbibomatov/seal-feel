@@ -3,14 +3,27 @@ import { NavLink } from "react-router-dom";
 
 const User = (props) => {
   let followButton = (followed) => {
-    let buttonText = followed ? "Отписаться" : "Подписаться";
+    let buttonText, onClickButton;
+
+    if (followed) {
+      buttonText = "Отписаться";
+
+      onClickButton = () => {
+        props.unfollowUser(props.followingInProgress, props.id);
+      };
+    } else {
+      buttonText = "Подписаться";
+
+      onClickButton = () => {
+        props.followUser(props.id);
+      };
+    }
 
     return (
       <button
         className={styles.followButton}
-        onClick={() => {
-          followed ? props.unfollowUser(props.id) : props.followUser(props.id);
-        }}
+        onClick={onClickButton}
+        disabled={props.followingInProgress.includes(props.id)}
       >
         {buttonText}
       </button>

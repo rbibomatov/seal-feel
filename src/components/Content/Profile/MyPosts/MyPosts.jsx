@@ -24,9 +24,8 @@ const MyPosts = (props) => {
     <div className={styles.myPosts}>
       <div className={styles.addPostForm}>
         <textarea
+          className={styles.postTextArea}
           ref={newPostElement}
-          cols="120"
-          rows="5"
           value={profilePage.postText}
           placeholder="Расскажите, как у вас дела?"
           onChange={onChangePost}
