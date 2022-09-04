@@ -8,12 +8,32 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-export const authMe = () => {
+export const authMeAPI = () => {
   return instance.get(`/auth/me`).then((response) => response.data);
 };
 
-export const getProfile = (userId) => {
+export const loginAPI = (email, password, rememberMe) => {
+  return instance
+    .post(`/auth/login`, { email, password, rememberMe })
+    .then((response) => response.data);
+};
+
+export const logoutAPI = () => {
+  return instance.delete(`/auth/login`).then((response) => response.data);
+};
+
+export const getProfileAPI = (userId) => {
   return instance.get(`/profile/${userId}`).then((response) => response.data);
+};
+
+export const getStatusAPI = (userId) => {
+  return instance.get(`/profile/status/${userId}`).then((response) => response);
+};
+
+export const updateStatusAPI = (status) => {
+  return instance
+    .put(`/profile/status/`, { status })
+    .then((response) => response.data);
 };
 
 export const getUsersAPI = (currentPage, pageSize) => {

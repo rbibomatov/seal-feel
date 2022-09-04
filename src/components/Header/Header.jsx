@@ -1,38 +1,43 @@
 import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import logo from "./../../images/Header/FullLogo.png";
+import logoutIcon from "./../../images/Header/LogoutIcon.png";
 
 const Header = (props) => {
   let auth = props.auth;
 
   const showAuthData = (isAuth) => {
-    let loginButton = (
-      <NavLink className={styles.loginButton} to="/login">
-        <span>Login</span>
-      </NavLink>
-    );
-
     let userInfo = (
-      <NavLink to={`/profile/${auth.id}`}>
-        <div className={styles.profileBar}>
+      <div className={styles.profileBar}>
+        <NavLink to={`/profile/${auth.id}`}>
+          <div className={styles.profileBar}>
+            <img
+              className={styles.userAvatar}
+              src={auth.avatar}
+              alt="Аватар пользователя"
+            />
+            <div className={styles.userName}>{auth.login}</div>
+          </div>
+        </NavLink>
+        <div className={styles.logoutBar}>
           <img
-            className={styles.userAvatar}
-            src={auth.avatar}
+            className={styles.logoutIcon}
+            src={logoutIcon}
             alt="Аватар пользователя"
           />
-          <div className={styles.userName}>{auth.login}</div>
+          <button className={styles.logoutButton} onClick={props.logout}>
+            Выйти
+          </button>
         </div>
-      </NavLink>
+      </div>
     );
 
-    return isAuth ? userInfo : loginButton;
+    return isAuth ? userInfo : null;
   };
 
   return (
     <header className={styles.header}>
-      <NavLink to="/news">
-        <img className={styles.logo} src={logo} alt="Логотип Seal Feel" />
-      </NavLink>
+      <img className={styles.logo} src={logo} alt="Логотип Seal Feel" />
       {showAuthData(auth.isAuth)}
     </header>
   );

@@ -1,6 +1,7 @@
 import styles from "./ProfileInfo.module.css";
 import profileBackground from "./../../../../images/Content/Profile/ProfileBackground.jpg";
 import defaultAvatar from "./../../../../images/Common/DefaultUserAvatar.png";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const ProfileInfo = (props) => {
   let profile = props.profile,
@@ -77,6 +78,10 @@ const ProfileInfo = (props) => {
       }
       <div className={styles.profileDescription}>
         <div className={styles.profileName}>{profile?.fullName}</div>
+        <ProfileStatus
+          status={props.status}
+          updateStatus={props.updateStatus}
+        />
         <div className={styles.descriptionBlock}>
           <div className={styles.descriptionInfo}>
             <div className={styles.descriptionName}>Обо мне:</div>

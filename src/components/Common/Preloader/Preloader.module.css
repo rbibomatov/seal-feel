@@ -1,9 +1,16 @@
-.preloader {
+.preloaderRelative {
   position: relative;
   left: 50%;
-  top: 25%;
+  top: 40%;
 }
 
-.preloader img {
+.preloaderAbsolute {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+}
+
+.preloaderRelative img,
+.preloaderAbsolute img {
   width: 100px;
 }

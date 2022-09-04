@@ -2,20 +2,33 @@ import React from "react";
 import styles from "./Messages.module.css";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
+import { useForm } from "react-hook-form";
+
+const AddMessageForm = (props) => {
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = (data) => {
+    props.addMessage(data.messageText);
+    reset();
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <textarea
+        {...register("messageText", {
+          required: true,
+        })}
+        cols="50"
+        rows="5"
+        placeholder="Введите свое сообщение..."
+      ></textarea>
+      <button type="submit">Add</button>
+    </form>
+  );
+};
 
 const Messages = (props) => {
   let messagesPage = props.messagesPage;
-  let newMessageElement = React.createRef();
-
-  let onSendMessage = () => {
-    if (messagesPage.newMessageText) {
-      props.addMessage(messagesPage.newMessageText);
-    }
-  };
-  let onChangeMessage = () => {
-    let text = newMessageElement.current.value;
-    props.updateMessageText(text);
-  };
 
   let dialogsElements = messagesPage.dialogs.map((dialogData) => {
     return (
@@ -41,17 +54,7 @@ const Messages = (props) => {
       <div className={styles.dialogsItems}>{dialogsElements}</div>
       <div className={styles.messages}>{messagesElements}</div>
       <div className={styles.newMessage}>
-        <textarea
-          ref={newMessageElement}
-          cols="50"
-          rows="5"
-          value={messagesPage.newMessageText}
-          placeholder="Введите свое сообщение..."
-          onChange={onChangeMessage}
-        ></textarea>
-        <div>
-          <button onClick={onSendMessage}>Add</button>
-        </div>
+        <AddMessageForm addMessage={props.addMessage} />
       </div>
     </div>
   );

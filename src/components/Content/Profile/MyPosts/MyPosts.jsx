@@ -1,39 +1,49 @@
 import React from "react";
 import styles from "./MyPosts.module.css";
 import Post from "./Post/Post.jsx";
+import { useForm } from "react-hook-form";
+
+const AddPostForm = (props) => {
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = (data) => {
+    props.addPost(data.postText);
+    reset();
+  };
+
+  return (
+    <form className={styles.addPostForm} onSubmit={handleSubmit(onSubmit)}>
+      <textarea
+        className={styles.postTextArea}
+        {...register("postText", {
+          required: true,
+        })}
+        placeholder="Расскажите, как у вас дела?"
+      ></textarea>
+      <div>
+        <button type="submit">Опубликовать</button>
+      </div>
+    </form>
+  );
+};
 
 const MyPosts = (props) => {
   let profilePage = props.profilePage;
-  let newPostElement = React.createRef();
-
-  let onAddPost = () => {
-    if (profilePage.postText) {
-      props.addPost(profilePage.postText);
-    }
-  };
-  let onChangePost = () => {
-    let text = newPostElement.current.value;
-    props.updatePostText(text);
-  };
 
   let postsElements = profilePage.posts.map((post) => {
-    return <Post id={post.id} key={"post_" + post.id} message={post.message} />;
+    return (
+      <Post
+        id={post.id}
+        key={"post_" + post.id}
+        message={post.message}
+        createTime={post.createTime}
+      />
+    );
   });
 
   return (
     <div className={styles.myPosts}>
-      <div className={styles.addPostForm}>
-        <textarea
-          className={styles.postTextArea}
-          ref={newPostElement}
-          value={profilePage.postText}
-          placeholder="Расскажите, как у вас дела?"
-          onChange={onChangePost}
-        />
-        <div>
-          <button onClick={onAddPost}>Опубликовать</button>
-        </div>
-      </div>
+      <AddPostForm addPost={props.addPost} />
       {postsElements}
     </div>
   );

@@ -9,7 +9,7 @@ const Post = (props) => {
         <div className={styles.textAuthor}>Диана Мирошкина</div>
         <div className={styles.textMessage}>{props.message}</div>
         <div className={styles.postTime}>
-          {new Date().toTimeString().slice(0, 5)}
+          {props.createTime.toTimeString().slice(0, 5)}
         </div>
       </div>
     </div>

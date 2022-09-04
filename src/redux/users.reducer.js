@@ -93,46 +93,40 @@ export const unfollow = (userId) => {
   return { type: UNFOLLOW, userId };
 };
 
-export const getUsers = (currentPage, pageSize) => {
-  return (dispatch) => {
-    dispatch(toogleUsersInProgress(true));
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+  dispatch(toogleUsersInProgress(true));
 
-    getUsersAPI(currentPage, pageSize).then((data) => {
-      dispatch(toogleUsersInProgress(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
-  };
+  getUsersAPI(currentPage, pageSize).then((data) => {
+    dispatch(toogleUsersInProgress(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
+  });
 };
 
-export const followUser = (userId) => {
-  return (dispatch) => {
-    dispatch(toogleFollowingInProgress([userId]));
+export const followUser = (userId) => (dispatch) => {
+  dispatch(toogleFollowingInProgress([userId]));
 
-    followUserAPI(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(follow(userId));
-        dispatch(toogleFollowingInProgress([]));
-      }
-    });
-  };
+  followUserAPI(userId).then((data) => {
+    if (data.resultCode === 0) {
+      dispatch(follow(userId));
+      dispatch(toogleFollowingInProgress([]));
+    }
+  });
 };
 
-export const unfollowUser = (followingInProgress, userId) => {
-  return (dispatch) => {
-    dispatch(toogleFollowingInProgress([...followingInProgress, userId]));
+export const unfollowUser = (followingInProgress, userId) => (dispatch) => {
+  dispatch(toogleFollowingInProgress([...followingInProgress, userId]));
 
-    unfollowUserAPI(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(unfollow(userId));
-        dispatch(
-          toogleFollowingInProgress([
-            [...followingInProgress].filter((id) => id !== userId),
-          ])
-        );
-      }
-    });
-  };
+  unfollowUserAPI(userId).then((data) => {
+    if (data.resultCode === 0) {
+      dispatch(unfollow(userId));
+      dispatch(
+        toogleFollowingInProgress([
+          [...followingInProgress].filter((id) => id !== userId),
+        ])
+      );
+    }
+  });
 };
 
 export default usersReducer;
