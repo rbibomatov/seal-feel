@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/seal-feel/static/css/main.f4c8360a.css",
+    "main.js": "/seal-feel/static/js/main.673cdb58.js",
+    "static/css/993.eafdf65a.chunk.css": "/seal-feel/static/css/993.eafdf65a.chunk.css",
+    "static/js/993.33496796.chunk.js": "/seal-feel/static/js/993.33496796.chunk.js",
+    "static/css/550.93167eca.chunk.css": "/seal-feel/static/css/550.93167eca.chunk.css",
+    "static/js/550.308d2451.chunk.js": "/seal-feel/static/js/550.308d2451.chunk.js",
+    "static/css/526.0530be9c.chunk.css": "/seal-feel/static/css/526.0530be9c.chunk.css",
+    "static/js/526.28807474.chunk.js": "/seal-feel/static/js/526.28807474.chunk.js",
+    "static/js/787.1d2c7137.chunk.js": "/seal-feel/static/js/787.1d2c7137.chunk.js",
+    "static/media/ProfileBackground.jpg": "/seal-feel/static/media/ProfileBackground.3e96d2a494117a6f009c.jpg",
+    "static/media/FullLogo.png": "/seal-feel/static/media/FullLogo.886dd03ed2b691c66e02.png",
+    "static/media/DefaultUserAvatar.png": "/seal-feel/static/media/DefaultUserAvatar.60049642989317db0b81.png",
+    "static/media/Preloader.gif": "/seal-feel/static/media/Preloader.70955a689dee34e2ba61.gif",
+    "static/media/Profile.png": "/seal-feel/static/media/Profile.69732fa4530b56ec6773.png",
+    "static/media/Users.png": "/seal-feel/static/media/Users.c0c99e0870503b2a2678.png",
+    "static/media/Settings.png": "/seal-feel/static/media/Settings.2a7f039b8d902eb97aa2.png",
+    "static/media/News.png": "/seal-feel/static/media/News.7a62bf59f9350746f279.png",
+    "index.html": "/seal-feel/index.html",
+    "main.f4c8360a.css.map": "/seal-feel/static/css/main.f4c8360a.css.map",
+    "main.673cdb58.js.map": "/seal-feel/static/js/main.673cdb58.js.map",
+    "993.eafdf65a.chunk.css.map": "/seal-feel/static/css/993.eafdf65a.chunk.css.map",
+    "993.33496796.chunk.js.map": "/seal-feel/static/js/993.33496796.chunk.js.map",
+    "550.93167eca.chunk.css.map": "/seal-feel/static/css/550.93167eca.chunk.css.map",
+    "550.308d2451.chunk.js.map": "/seal-feel/static/js/550.308d2451.chunk.js.map",
+    "526.0530be9c.chunk.css.map": "/seal-feel/static/css/526.0530be9c.chunk.css.map",
+    "526.28807474.chunk.js.map": "/seal-feel/static/js/526.28807474.chunk.js.map",
+    "787.1d2c7137.chunk.js.map": "/seal-feel/static/js/787.1d2c7137.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f4c8360a.css",
+    "static/js/main.673cdb58.js"
+  ]
+}
