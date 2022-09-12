@@ -1,25 +1,26 @@
 import styles from "./NavBar.module.css";
+import { useSelector } from "react-redux";
 import NavBarLink from "./NavBarLink/NavBarLink";
-
-import logoProfile from "./../../images/NavBar/Profile.png";
-import logoNews from "./../../images/NavBar/News.png";
-import logoMessages from "./../../images/NavBar/Messages.png";
-import logoUsers from "./../../images/NavBar/Users.png";
-import logoSettings from "./../../images/NavBar/Settings.png";
+import images from "./../../images/NavBar/Images";
 
 const NavBar = (props) => {
+  const сurrentUserId = useSelector((state) => state.auth.currentUser.id);
+
   return (
     <nav className={styles.nav}>
       <div className={styles.linksWrapper}>
         <NavBarLink
-          to={"/profile/" + props.userId}
+          to={"/profile/" + сurrentUserId}
           name="Профиль"
-          image={logoProfile}
+          image={images.logoProfile}
         />
-        <NavBarLink to="/news" name="Новости" image={logoNews} />
-        <NavBarLink to="/messages" name="Сообщения" image={logoMessages} />
-        <NavBarLink to="/users" name="Пользователи" image={logoUsers} />
-        <NavBarLink to="/settings" name="Настройки" image={logoSettings} />
+        <NavBarLink to="/news" name="Новости" image={images.logoNews} />
+        <NavBarLink
+          to="/messages"
+          name="Сообщения"
+          image={images.logoMessages}
+        />
+        <NavBarLink to="/users" name="Пользователи" image={images.logoUsers} />
       </div>
     </nav>
   );

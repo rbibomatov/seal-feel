@@ -1,13 +1,15 @@
-import React from "react";
 import styles from "./MyPosts.module.css";
-import Post from "./Post/Post.jsx";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import { addPost } from "../../../../redux/profile.reducer";
+import Post from "./Post/Post.jsx";
 
 const AddPostForm = (props) => {
   const { register, handleSubmit, reset } = useForm();
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    props.addPost(data.postText);
+    dispatch(addPost(data.postText));
     reset();
   };
 
@@ -28,7 +30,7 @@ const AddPostForm = (props) => {
 };
 
 const MyPosts = (props) => {
-  let profilePage = props.profilePage;
+  const profilePage = useSelector((state) => state.profilePage);
 
   let postsElements = profilePage.posts.map((post) => {
     return (
@@ -37,6 +39,7 @@ const MyPosts = (props) => {
         key={"post_" + post.id}
         message={post.message}
         createTime={post.createTime}
+        currentUserLogin={props.currentUserLogin}
       />
     );
   });

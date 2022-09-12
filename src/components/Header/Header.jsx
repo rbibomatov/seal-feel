@@ -1,22 +1,25 @@
 import styles from "./Header.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../redux/auth.reducer";
 import { NavLink } from "react-router-dom";
 import logo from "./../../images/Header/FullLogo.png";
 import logoutIcon from "./../../images/Header/LogoutIcon.png";
 
 const Header = (props) => {
-  let auth = props.auth;
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const showAuthData = (isAuth) => {
     let userInfo = (
       <div className={styles.profileBar}>
-        <NavLink to={`/profile/${auth.id}`}>
+        <NavLink to={`/profile/${auth.currentUser.id}`}>
           <div className={styles.profileBar}>
             <img
               className={styles.userAvatar}
-              src={auth.avatar}
+              src={auth.currentUser.photo}
               alt="Аватар пользователя"
             />
-            <div className={styles.userName}>{auth.login}</div>
+            <div className={styles.userName}>{auth.currentUser.login}</div>
           </div>
         </NavLink>
         <div className={styles.logoutBar}>
@@ -25,7 +28,10 @@ const Header = (props) => {
             src={logoutIcon}
             alt="Аватар пользователя"
           />
-          <button className={styles.logoutButton} onClick={props.logout}>
+          <button
+            className={styles.logoutButton}
+            onClick={() => dispatch(logout())}
+          >
             Выйти
           </button>
         </div>

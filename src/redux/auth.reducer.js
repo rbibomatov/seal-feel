@@ -1,26 +1,36 @@
-import { loginAPI, logoutAPI, authMeAPI, getProfileAPI } from "../api/api";
+import { authAPI, profileAPI } from "../api/api";
 import defaultAvatar from "./../images/Common/DefaultUserAvatar.png";
 
-const SET_USER_DATA = "SET_USER_DATA";
-const DELETE_USER_DATA = "DELETE_USER_DATA";
+const GET_CAPTCHA_URL = "auth/GET_CAPTCHA_URL";
+const SET_USER_DATA = "auth/SET_USER_DATA";
+const DELETE_USER_DATA = "auth/DELETE_USER_DATA";
 
 let initialState = {
   isFetching: false,
   isAuth: false,
-  id: null,
-  email: null,
-  login: null,
-  avatar: defaultAvatar,
+  captchaURL: "",
+  currentUser: {
+    id: null,
+    email: null,
+    login: null,
+    photo: defaultAvatar,
+  },
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_CAPTCHA_URL:
+      return {
+        ...state,
+        captchaURL: action.captchaURL,
+      };
     case SET_USER_DATA:
       return {
         ...state,
-        ...action.data,
         isAuth: true,
-        avatar: action.avatar ? action.avatar : defaultAvatar,
+        currentUser: {
+          ...action.userData,
+        },
       };
     case DELETE_USER_DATA:
       return {
@@ -31,38 +41,55 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export const setUserData = (id, email, login, avatar) => {
-  return { type: SET_USER_DATA, data: { id, email, login, avatar } };
+export const getCaptchaURL = (captchaURL) => {
+  return { type: GET_CAPTCHA_URL, captchaURL };
+};
+export const setUserData = (id, email, login, photo) => {
+  return { type: SET_USER_DATA, userData: { id, email, login, photo } };
 };
 export const deleteUserData = () => {
   return { type: DELETE_USER_DATA };
 };
 
-export const getAuthUserData = () => (dispatch) => {
-  return authMeAPI().then((authData) => {
-    if (authData.resultCode === 0) {
-      let { id, email, login } = authData.data;
-      getProfileAPI(id).then((profileData) => {
-        dispatch(setUserData(id, email, login, profileData.photos.large));
-      });
-    }
-  });
+export const login = (email, password, rememberMe) => async (dispatch) => {
+  const authData = await authAPI.login(email, password, rememberMe);
+
+  if (authData.resultCode === 0) {
+    dispatch(getAuthUserData());
+  } else if (authData.resultCode === 10) {
+    dispatch(getCaptcha());
+  } else {
+    ////
+  }
 };
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-  loginAPI(email, password, rememberMe).then((authData) => {
-    if (authData.resultCode === 0) {
-      dispatch(getAuthUserData());
-    }
-  });
+export const getCaptcha = () => async (dispatch) => {
+  const captcha = await authAPI.captcha();
+
+  dispatch(getCaptchaURL(captcha));
 };
 
-export const logout = () => (dispatch) => {
-  logoutAPI().then((authData) => {
-    if (authData.resultCode === 0) {
-      dispatch(deleteUserData());
-    }
-  });
+export const logout = () => async (dispatch) => {
+  const authData = await authAPI.logout();
+
+  if (authData.resultCode === 0) {
+    dispatch(deleteUserData());
+  }
+};
+
+export const getAuthUserData = () => async (dispatch) => {
+  const authData = await authAPI.authMe();
+
+  if (authData.resultCode === 0) {
+    const { id, email, login } = authData.data;
+    const stringId = String(id);
+
+    const {
+      photos: { large: photo = defaultAvatar },
+    } = await profileAPI.getProfile(id);
+
+    dispatch(setUserData(stringId, email, login, photo));
+  }
 };
 
 export default authReducer;

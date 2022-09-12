@@ -2,22 +2,11 @@ import styles from "./ProfileInfo.module.css";
 import profileBackground from "./../../../../images/Content/Profile/ProfileBackground.jpg";
 import defaultAvatar from "./../../../../images/Common/DefaultUserAvatar.png";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import Preloader from "../../../Common/Preloader/Preloader";
 
 const ProfileInfo = (props) => {
   let profile = props.profile,
     contacts = props.profile?.contacts;
-
-  const showAvatar = (profilePhoto) => {
-    let profileAvatar;
-
-    if (profilePhoto) {
-      profileAvatar = profilePhoto;
-    } else {
-      profileAvatar = defaultAvatar;
-    }
-
-    return profileAvatar;
-  };
 
   const showDescriptionContent = (itemHeader, profileData, createRef) => {
     if (profile) {
@@ -62,68 +51,89 @@ const ProfileInfo = (props) => {
     }
   };
 
-  return (
-    <div className={styles.profileInfo}>
-      <img
-        className={styles.profileBackground}
-        src={profileBackground}
-        alt="Фон профиля"
-      />
-      {
-        // eslint-disable-next-line jsx-a11y/alt-text
+  const onAvatarSelected = (e) => {
+    if (e.target.files.length) {
+      props.saveUserAvatar(e.target.files[0]);
+    }
+  };
+
+  if (profile) {
+    return (
+      <div className={styles.profileInfo}>
         <img
-          className={styles.profileAvatar}
-          src={showAvatar(profile?.photos.large)}
+          className={styles.profileBackground}
+          src={profileBackground}
+          alt="Фон профиля"
         />
-      }
-      <div className={styles.profileDescription}>
-        <div className={styles.profileName}>{profile?.fullName}</div>
-        <ProfileStatus
-          status={props.status}
-          updateStatus={props.updateStatus}
-        />
-        <div className={styles.descriptionBlock}>
-          <div className={styles.descriptionInfo}>
-            <div className={styles.descriptionName}>Обо мне:</div>
-            {showDescriptionContent(
-              ["Статус", "Ищу работу", "Описание исковой работы"],
-              [
-                profile?.aboutMe,
-                profile?.lookingForAJob,
-                profile?.lookingForAJobDescription,
-              ]
-            )}
-          </div>
+
+        <div className={styles.avatarBar}>
+          <img
+            className={styles.profileAvatar}
+            src={profile.photos?.large || defaultAvatar}
+            alt="Аватар пользователя"
+          />
+          {props.isOnwer && (
+            <div>
+              <input
+                className={styles.changeAvatarButton}
+                type="file"
+                onChange={onAvatarSelected}
+              />
+            </div>
+          )}
         </div>
-        <div className={styles.descriptionBlock}>
-          <div className={styles.descriptionInfo}>
-            <div className={styles.descriptionName}>Контакты:</div>
-            {showDescriptionContent(
-              [
-                "Facebook",
-                "Website",
-                "VK",
-                "Twitter",
-                "Instagram",
-                "Youtube",
-                "Github",
-              ],
-              [
-                contacts?.facebook,
-                contacts?.website,
-                contacts?.vk,
-                contacts?.twitter,
-                contacts?.instagram,
-                contacts?.youtube,
-                contacts?.github,
-              ],
-              true
-            )}
+
+        <div className={styles.profileDescription}>
+          <div className={styles.profileName}>{profile?.fullName}</div>
+          <ProfileStatus
+            status={props.status}
+            updateStatus={props.updateStatus}
+          />
+          <div className={styles.descriptionBlock}>
+            <div className={styles.descriptionInfo}>
+              <div className={styles.descriptionName}>Обо мне:</div>
+              {showDescriptionContent(
+                ["Статус", "Ищу работу", "Описание исковой работы"],
+                [
+                  profile?.aboutMe,
+                  profile?.lookingForAJob,
+                  profile?.lookingForAJobDescription,
+                ]
+              )}
+            </div>
+          </div>
+          <div className={styles.descriptionBlock}>
+            <div className={styles.descriptionInfo}>
+              <div className={styles.descriptionName}>Контакты:</div>
+              {showDescriptionContent(
+                [
+                  "Facebook",
+                  "Website",
+                  "VK",
+                  "Twitter",
+                  "Instagram",
+                  "Youtube",
+                  "Github",
+                ],
+                [
+                  contacts?.facebook,
+                  contacts?.website,
+                  contacts?.vk,
+                  contacts?.twitter,
+                  contacts?.instagram,
+                  contacts?.youtube,
+                  contacts?.github,
+                ],
+                true
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <Preloader />;
+  }
 };
 
 export default ProfileInfo;

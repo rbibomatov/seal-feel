@@ -8,46 +8,63 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-export const authMeAPI = () => {
-  return instance.get(`/auth/me`).then((response) => response.data);
+export const authAPI = {
+  authMe() {
+    return instance.get(`/auth/me`).then((response) => response.data);
+  },
+  login(email, password, rememberMe) {
+    return instance
+      .post(`/auth/login`, { email, password, rememberMe })
+      .then((response) => response.data);
+  },
+  logout() {
+    return instance.delete(`/auth/login`).then((response) => response.data);
+  },
+  captcha() {
+    return instance
+      .get(`/security/get-captcha-url`)
+      .then((response) => response.url);
+  },
 };
 
-export const loginAPI = (email, password, rememberMe) => {
-  return instance
-    .post(`/auth/login`, { email, password, rememberMe })
-    .then((response) => response.data);
+export const profileAPI = {
+  getProfile(userId) {
+    return instance.get(`/profile/${userId}`).then((response) => response.data);
+  },
+  getStatus(userId) {
+    return instance
+      .get(`/profile/status/${userId}`)
+      .then((response) => response.data);
+  },
+  updateStatus(status) {
+    return instance
+      .put(`/profile/status/`, { status })
+      .then((response) => response.data);
+  },
+  saveAvatar(avatarFile) {
+    const formData = new FormData();
+    formData.append("image", avatarFile);
+
+    return instance
+      .put(`/profile/photo/`, formData)
+      .then((response) => response.data);
+  },
 };
 
-export const logoutAPI = () => {
-  return instance.delete(`/auth/login`).then((response) => response.data);
-};
-
-export const getProfileAPI = (userId) => {
-  return instance.get(`/profile/${userId}`).then((response) => response.data);
-};
-
-export const getStatusAPI = (userId) => {
-  return instance.get(`/profile/status/${userId}`).then((response) => response);
-};
-
-export const updateStatusAPI = (status) => {
-  return instance
-    .put(`/profile/status/`, { status })
-    .then((response) => response.data);
-};
-
-export const getUsersAPI = (currentPage, pageSize) => {
-  return instance
-    .get(`/users?page=${currentPage}&count=${pageSize}`)
-    .then((response) => response.data);
-};
-
-export const followUserAPI = (userId) => {
-  return instance
-    .post(`/follow/${userId}`, null)
-    .then((response) => response.data);
-};
-
-export const unfollowUserAPI = (userId) => {
-  return instance.delete(`/follow/${userId}`).then((response) => response.data);
+export const usersAPI = {
+  getUsers(currentPage, pageSize) {
+    return instance
+      .get(`/users?page=${currentPage}&count=${pageSize}`)
+      .then((response) => response.data);
+  },
+  followUser(userId) {
+    return instance
+      .post(`/follow/${userId}`, null)
+      .then((response) => response.data);
+  },
+  unfollowUser(userId) {
+    return instance
+      .delete(`/follow/${userId}`)
+      .then((response) => response.data);
+  },
 };

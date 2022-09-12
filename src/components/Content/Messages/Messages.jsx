@@ -1,14 +1,17 @@
-import React from "react";
 import styles from "./Messages.module.css";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
+import { useSelector, useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { addMessage } from "../../../redux/messages.reducer";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-import { useForm } from "react-hook-form";
 
 const AddMessageForm = (props) => {
   const { register, handleSubmit, reset } = useForm();
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    props.addMessage(data.messageText);
+    dispatch(addMessage(data.messageText));
     reset();
   };
 
@@ -28,7 +31,7 @@ const AddMessageForm = (props) => {
 };
 
 const Messages = (props) => {
-  let messagesPage = props.messagesPage;
+  const messagesPage = useSelector((state) => state.messagesPage);
 
   let dialogsElements = messagesPage.dialogs.map((dialogData) => {
     return (
@@ -60,4 +63,4 @@ const Messages = (props) => {
   );
 };
 
-export default Messages;
+export default withAuthRedirect(Messages);

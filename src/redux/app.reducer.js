@@ -1,6 +1,6 @@
 import { getAuthUserData } from "./auth.reducer";
 
-const SET_INITIALIZED = "SET_INITIALIZED";
+const SET_INITIALIZED = "app/SET_INITIALIZED";
 
 let initialState = {
   initialized: false,
@@ -23,12 +23,9 @@ export const initialize = () => {
   return { type: SET_INITIALIZED };
 };
 
-export const initializeApp = () => (dispatch) => {
-  let dispatchResult = dispatch(getAuthUserData());
-
-  dispatchResult.then(() => {
-    dispatch(initialize());
-  });
+export const initializeApp = () => async (dispatch) => {
+  await dispatch(getAuthUserData());
+  dispatch(initialize());
 };
 
 export default appReducer;

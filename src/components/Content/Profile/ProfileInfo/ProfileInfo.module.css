@@ -16,10 +16,15 @@
   grid-area: bg;
 }
 
+.avatarBar {
+  grid-area: avatar;
+}
 .profileAvatar {
   width: 150px;
   margin-left: 30px;
-  grid-area: avatar;
+}
+.changeAvatarButton {
+  margin-top: 10px;
 }
 
 .profileName {
