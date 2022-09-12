@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/seal-feel/static/css/main.f4c8360a.css",
-    "main.js": "/seal-feel/static/js/main.d726546c.js",
-    "static/css/993.eafdf65a.chunk.css": "/seal-feel/static/css/993.eafdf65a.chunk.css",
-    "static/js/993.33496796.chunk.js": "/seal-feel/static/js/993.33496796.chunk.js",
-    "static/css/550.93167eca.chunk.css": "/seal-feel/static/css/550.93167eca.chunk.css",
-    "static/js/550.308d2451.chunk.js": "/seal-feel/static/js/550.308d2451.chunk.js",
-    "static/css/526.0530be9c.chunk.css": "/seal-feel/static/css/526.0530be9c.chunk.css",
-    "static/js/526.28807474.chunk.js": "/seal-feel/static/js/526.28807474.chunk.js",
+    "main.css": "/seal-feel/static/css/main.92b8dd0d.css",
+    "main.js": "/seal-feel/static/js/main.a8e44475.js",
+    "static/css/990.e8ffae42.chunk.css": "/seal-feel/static/css/990.e8ffae42.chunk.css",
+    "static/js/990.bdee5455.chunk.js": "/seal-feel/static/js/990.bdee5455.chunk.js",
+    "static/css/619.2555c43c.chunk.css": "/seal-feel/static/css/619.2555c43c.chunk.css",
+    "static/js/619.06b28c66.chunk.js": "/seal-feel/static/js/619.06b28c66.chunk.js",
+    "static/css/666.7960763c.chunk.css": "/seal-feel/static/css/666.7960763c.chunk.css",
+    "static/js/666.b44af8ed.chunk.js": "/seal-feel/static/js/666.b44af8ed.chunk.js",
     "static/js/787.1d2c7137.chunk.js": "/seal-feel/static/js/787.1d2c7137.chunk.js",
     "static/media/ProfileBackground.jpg": "/seal-feel/static/media/ProfileBackground.3e96d2a494117a6f009c.jpg",
     "static/media/FullLogo.png": "/seal-feel/static/media/FullLogo.886dd03ed2b691c66e02.png",
@@ -15,21 +15,20 @@
     "static/media/Preloader.gif": "/seal-feel/static/media/Preloader.70955a689dee34e2ba61.gif",
     "static/media/Profile.png": "/seal-feel/static/media/Profile.69732fa4530b56ec6773.png",
     "static/media/Users.png": "/seal-feel/static/media/Users.c0c99e0870503b2a2678.png",
-    "static/media/Settings.png": "/seal-feel/static/media/Settings.2a7f039b8d902eb97aa2.png",
     "static/media/News.png": "/seal-feel/static/media/News.7a62bf59f9350746f279.png",
     "index.html": "/seal-feel/index.html",
-    "main.f4c8360a.css.map": "/seal-feel/static/css/main.f4c8360a.css.map",
-    "main.d726546c.js.map": "/seal-feel/static/js/main.d726546c.js.map",
-    "993.eafdf65a.chunk.css.map": "/seal-feel/static/css/993.eafdf65a.chunk.css.map",
-    "993.33496796.chunk.js.map": "/seal-feel/static/js/993.33496796.chunk.js.map",
-    "550.93167eca.chunk.css.map": "/seal-feel/static/css/550.93167eca.chunk.css.map",
-    "550.308d2451.chunk.js.map": "/seal-feel/static/js/550.308d2451.chunk.js.map",
-    "526.0530be9c.chunk.css.map": "/seal-feel/static/css/526.0530be9c.chunk.css.map",
-    "526.28807474.chunk.js.map": "/seal-feel/static/js/526.28807474.chunk.js.map",
+    "main.92b8dd0d.css.map": "/seal-feel/static/css/main.92b8dd0d.css.map",
+    "main.a8e44475.js.map": "/seal-feel/static/js/main.a8e44475.js.map",
+    "990.e8ffae42.chunk.css.map": "/seal-feel/static/css/990.e8ffae42.chunk.css.map",
+    "990.bdee5455.chunk.js.map": "/seal-feel/static/js/990.bdee5455.chunk.js.map",
+    "619.2555c43c.chunk.css.map": "/seal-feel/static/css/619.2555c43c.chunk.css.map",
+    "619.06b28c66.chunk.js.map": "/seal-feel/static/js/619.06b28c66.chunk.js.map",
+    "666.7960763c.chunk.css.map": "/seal-feel/static/css/666.7960763c.chunk.css.map",
+    "666.b44af8ed.chunk.js.map": "/seal-feel/static/js/666.b44af8ed.chunk.js.map",
     "787.1d2c7137.chunk.js.map": "/seal-feel/static/js/787.1d2c7137.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f4c8360a.css",
-    "static/js/main.d726546c.js"
+    "static/css/main.92b8dd0d.css",
+    "static/js/main.a8e44475.js"
   ]
 }
