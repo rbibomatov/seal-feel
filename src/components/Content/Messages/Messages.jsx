@@ -1,52 +1,22 @@
 import styles from "./Messages.module.css";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
-import { useSelector, useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
-import { addMessage } from "../../../redux/messages.reducer";
+import { useSelector } from "react-redux";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-
-const AddMessageForm = (props) => {
-  const { register, handleSubmit, reset } = useForm();
-  const dispatch = useDispatch();
-
-  const onSubmit = (data) => {
-    dispatch(addMessage(data.messageText));
-    reset();
-  };
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <textarea
-        {...register("messageText", {
-          required: true,
-        })}
-        cols="50"
-        rows="5"
-        placeholder="Введите свое сообщение..."
-      ></textarea>
-      <button type="submit">Add</button>
-    </form>
-  );
-};
+import { v4 as uuidv4 } from "uuid";
+import AddMessageForm from "../../Forms/AddMessageForm/AddMessageForm";
 
 const Messages = (props) => {
   const messagesPage = useSelector((state) => state.messagesPage);
 
   let dialogsElements = messagesPage.dialogs.map((dialogData) => {
-    return (
-      <Dialog
-        id={dialogData.id}
-        key={"dialog_" + dialogData.id}
-        name={dialogData.name}
-      />
-    );
+    return <Dialog id={dialogData.id} key={uuidv4()} name={dialogData.name} />;
   });
   let messagesElements = messagesPage.messages.map((messageData) => {
     return (
       <Message
         id={messageData.id}
-        key={"message_" + messageData.id}
+        key={uuidv4()}
         message={messageData.message}
       />
     );
@@ -57,7 +27,7 @@ const Messages = (props) => {
       <div className={styles.dialogsItems}>{dialogsElements}</div>
       <div className={styles.messages}>{messagesElements}</div>
       <div className={styles.newMessage}>
-        <AddMessageForm addMessage={props.addMessage} />
+        <AddMessageForm />
       </div>
     </div>
   );

@@ -9,37 +9,38 @@ const ProfileStatus = (props) => {
     setStatus(props.status);
   }, [props.status]);
 
-  const activeEditMode = () => {
-    setEditMode(true);
-  };
+  const showStatusElement = (
+    <span
+      className={props.isOnwer ? styles.showModeStatusBar : ""}
+      onClick={() => {
+        if (props.isOnwer) {
+          setEditMode(true);
+        }
+      }}
+    >
+      {status ? status : props.isOnwer ? "Укажите ваш статус..." : ""}
+    </span>
+  );
 
-  const deactiveEditMode = () => {
-    setEditMode(false);
-    props.updateStatus(status);
-  };
-
-  const onStatusChange = (e) => {
-    setStatus(e.currentTarget.value);
-  };
+  const editStatusElement = (
+    <input
+      className={styles.editModeStatusBar}
+      maxLength="300"
+      autoFocus={true}
+      onBlur={() => {
+        setEditMode(false);
+        props.updateStatus(status);
+      }}
+      onChange={(e) => {
+        setStatus(e.currentTarget.value);
+      }}
+      value={status}
+    />
+  );
 
   return (
-    <div>
-      {editMode && (
-        <div>
-          <input
-            maxLength="300"
-            autoFocus={true}
-            onChange={onStatusChange}
-            onBlur={deactiveEditMode}
-            value={status}
-          />
-        </div>
-      )}
-      {!editMode && (
-        <div>
-          <span onClick={activeEditMode}>{status}</span>
-        </div>
-      )}
+    <div className={styles.statusBar}>
+      {editMode ? editStatusElement : showStatusElement}
     </div>
   );
 };

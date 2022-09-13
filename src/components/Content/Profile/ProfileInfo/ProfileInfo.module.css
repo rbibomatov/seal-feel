@@ -2,29 +2,9 @@
   display: grid;
   grid-template-columns: 215px 9fr;
   grid-template-rows: auto auto;
-  grid-template-areas:
-    "bg bg"
-    "avatar description";
+  grid-template-areas: "avatar description";
   gap: 20px;
-  margin-bottom: 30px;
-}
-
-.profileBackground {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  grid-area: bg;
-}
-
-.avatarBar {
-  grid-area: avatar;
-}
-.profileAvatar {
-  width: 150px;
-  margin-left: 30px;
-}
-.changeAvatarButton {
-  margin-top: 10px;
+  margin: 30px 25px 10px 25px;
 }
 
 .profileName {
@@ -34,26 +14,5 @@
 
 .profileDescription {
   grid-area: description;
-}
-
-.descriptionBlock {
-  width: 80%;
-  padding: 10px;
-  border: 1px solid grey;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-.descriptionInfo {
-  margin-left: 10px;
-}
-.descriptionName {
-  font-size: 22px;
-  margin-bottom: 15px;
-}
-.descriptionItem {
-  margin-bottom: 10px;
-}
-.descriptionItemHeader {
-  margin-right: 5px;
-  color: #6666ff;
+  margin-left: 20px;
 }

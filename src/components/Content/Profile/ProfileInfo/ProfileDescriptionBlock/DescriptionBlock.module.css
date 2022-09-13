@@ -1,0 +1,21 @@
+.descriptionBlock {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.descriptionInfo {
+  margin-left: 10px;
+}
+.descriptionName {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+.descriptionItem {
+  margin-bottom: 10px;
+}
+.descriptionItemHeader {
+  margin-right: 5px;
+  color: #6666ff;
+}

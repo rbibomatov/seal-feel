@@ -98,9 +98,9 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
 
   const data = await usersAPI.getUsers(currentPage, pageSize);
 
-  dispatch(toogleUsersInProgress(false));
   dispatch(setUsers(data.items));
   dispatch(setTotalUsersCount(data.totalCount));
+  dispatch(toogleUsersInProgress(false));
 };
 
 export const followUser = (userId) => async (dispatch) => {

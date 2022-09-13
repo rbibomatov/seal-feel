@@ -1,0 +1,12 @@
+.statusBar {
+  margin: 15px 0;
+}
+
+.showModeStatusBar:hover {
+  background-color: rgba(102, 102, 255, 0.25);
+  cursor: pointer;
+}
+
+.editModeStatusBar {
+  width: 750px;
+}

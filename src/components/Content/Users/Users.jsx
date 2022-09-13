@@ -1,4 +1,3 @@
-import styles from "./Users.module.css";
 import { compose } from "redux";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import { connect } from "react-redux";
@@ -9,8 +8,10 @@ import {
   unfollowUser,
 } from "../../../redux/users.reducer";
 import { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Preloader from "../../Common/Preloader/Preloader";
 import defaultAvatar from "./../../../images/Common/DefaultUserAvatar.png";
+import PagesPanel from "./PagesPanel/PagesPanel";
 import User from "./User/User";
 
 const Users = (props) => {
@@ -20,31 +21,11 @@ const Users = (props) => {
     props.getUsers(usersPage.currentPage, usersPage.pageSize);
   }, []);
 
-  if (usersPage.usersInProgress) {
-    return <Preloader />;
-  } else {
-    let pages = [];
-    let pagesCount = Math.ceil(usersPage.totalUsersCount / usersPage.pageSize);
-
-    let currentPage = usersPage.currentPage;
-    let startPage = currentPage - 4 < 1 ? 1 : currentPage - 4;
-    let endPage = currentPage + 4 < pagesCount ? currentPage + 4 : pagesCount;
-
-    for (let i = startPage; i <= endPage; i++) {
-      if (i === startPage && startPage - 1 > 0) {
-        pages.push(1, "«");
-      }
-
-      pages.push(i);
-
-      if (i === endPage && endPage + 1 <= pagesCount) {
-        pages.push("»", pagesCount);
-      }
-    }
-
-    let usersElements = usersPage.users.map((user) => {
+  if (!usersPage.usersInProgress) {
+    const usersElements = usersPage.users.map((user) => {
       return (
         <User
+          key={uuidv4()}
           id={user.id}
           photo={user.photos.large ? user.photos.large : defaultAvatar}
           name={user.name}
@@ -57,36 +38,14 @@ const Users = (props) => {
       );
     });
 
-    let pagesElements = pages.map((page) => {
-      return (
-        <span
-          className={
-            styles.page + (currentPage === page ? " " + styles.currentPage : "")
-          }
-          onClick={() => {
-            let switchedPage = page;
-
-            if (page === "«") {
-              switchedPage = currentPage - 5;
-            } else if (page === "»") {
-              switchedPage = currentPage + 5;
-            }
-
-            props.setPage(switchedPage);
-            props.getUsers(switchedPage, usersPage.pageSize);
-          }}
-        >
-          {page}
-        </span>
-      );
-    });
-
     return (
       <div>
-        <div className={styles.pagePanel}>{pagesElements}</div>
+        <PagesPanel {...props} />
         {usersElements}
       </div>
     );
+  } else {
+    return <Preloader />;
   }
 };
 

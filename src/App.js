@@ -33,7 +33,7 @@ const App = () => {
           <React.Suspense fallback={<Preloader />}>
             <Routes>
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/profile/:userId" element={<Profile />} />
+              <Route path="/profile/:profileId" element={<Profile />} />
               <Route path="/messages/*" element={<Messages />} />
               <Route path="/users/*" element={<Users />} />
             </Routes>
