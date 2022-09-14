@@ -2,8 +2,9 @@ import { authAPI, profileAPI } from "../api/api";
 import defaultAvatar from "./../images/Common/DefaultUserAvatar.png";
 
 const GET_CAPTCHA_URL = "auth/GET_CAPTCHA_URL";
-const SET_USER_DATA = "auth/SET_USER_DATA";
-const DELETE_USER_DATA = "auth/DELETE_USER_DATA";
+const SET_CURRENT_USER_DATA = "auth/SET_CURRENT_USER_DATA";
+const SET_CURRENT_USER_PHOTO = "auth/SET_USER_DATA";
+const DELETE_CURRENT_USER_DATA = "auth/DELETE_USER_DATA";
 
 let initialState = {
   isFetching: false,
@@ -24,7 +25,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         captchaURL: action.captchaURL,
       };
-    case SET_USER_DATA:
+    case SET_CURRENT_USER_DATA:
       return {
         ...state,
         isAuth: true,
@@ -32,7 +33,15 @@ const authReducer = (state = initialState, action) => {
           ...action.userData,
         },
       };
-    case DELETE_USER_DATA:
+    case SET_CURRENT_USER_PHOTO:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          photo: action.photo,
+        },
+      };
+    case DELETE_CURRENT_USER_DATA:
       return {
         ...initialState,
       };
@@ -44,11 +53,14 @@ const authReducer = (state = initialState, action) => {
 export const getCaptchaURL = (captchaURL) => {
   return { type: GET_CAPTCHA_URL, captchaURL };
 };
-export const setUserData = (id, email, login, photo) => {
-  return { type: SET_USER_DATA, userData: { id, email, login, photo } };
+export const setCurrentUserData = (id, email, login, photo) => {
+  return { type: SET_CURRENT_USER_DATA, userData: { id, email, login, photo } };
 };
-export const deleteUserData = () => {
-  return { type: DELETE_USER_DATA };
+export const setCurrentUserPhotoAC = (photo) => {
+  return { type: SET_CURRENT_USER_PHOTO, photo };
+};
+export const deleteCurrentUserData = () => {
+  return { type: DELETE_CURRENT_USER_DATA };
 };
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
@@ -73,7 +85,7 @@ export const logout = () => async (dispatch) => {
   const authData = await authAPI.logout();
 
   if (authData.resultCode === 0) {
-    dispatch(deleteUserData());
+    dispatch(deleteCurrentUserData());
   }
 };
 
@@ -88,8 +100,12 @@ export const getAuthUserData = () => async (dispatch) => {
       photos: { large: photo = defaultAvatar },
     } = await profileAPI.getProfile(id);
 
-    dispatch(setUserData(stringId, email, login, photo));
+    dispatch(setCurrentUserData(stringId, email, login, photo));
   }
+};
+
+export const setCurrentUserPhoto = (photo) => (dispatch) => {
+  dispatch(setCurrentUserPhotoAC(photo));
 };
 
 export default authReducer;

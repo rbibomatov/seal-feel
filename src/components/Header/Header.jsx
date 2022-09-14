@@ -23,15 +23,15 @@ const Header = (props) => {
           </div>
         </NavLink>
         <div className={styles.logoutBar}>
-          <img
-            className={styles.logoutIcon}
-            src={logoutIcon}
-            alt="Аватар пользователя"
-          />
           <button
             className={styles.logoutButton}
             onClick={() => dispatch(logout())}
           >
+            <img
+              className={styles.logoutIcon}
+              src={logoutIcon}
+              alt="Аватар пользователя"
+            />
             Выйти
           </button>
         </div>

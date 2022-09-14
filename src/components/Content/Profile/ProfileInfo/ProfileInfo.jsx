@@ -1,14 +1,17 @@
 import styles from "./ProfileInfo.module.css";
+import { useState } from "react";
 import PhotoBar from "./ProfilePhotoBar/ProfilePhotoBar";
 import StatusBar from "./ProfileStatus/ProfileStatus";
-import DescriptionBlock from "./ProfileDescriptionBlock/DescriptionBlock";
+import DescriptionBlock from "./ProfileDescriptionBlock/ProfileDescriptionBlock";
+import ProfileDescriptionForm from "../../../Forms/ProfileDescriptionForm/ProfileDescriptionForm";
 
 const ProfileInfo = (props) => {
+  const [editMode, setEditMode] = useState(false);
   const profile = props.profilePage.profile;
   const contacts = profile.contacts;
 
   const aboutMeData = [
-    ["Статус", "Ищу работу", "Описание исковой работы"],
+    ["Описание", "Ищу работу", "Навыки"],
     [
       profile.aboutMe,
       profile.lookingForAJob,
@@ -28,14 +31,38 @@ const ProfileInfo = (props) => {
     ],
   ];
 
+  const showProfileDescription = (
+    <div>
+      <DescriptionBlock blockName="Обо мне" blockData={aboutMeData} />
+      <DescriptionBlock
+        blockName="Контакты"
+        blockData={contactsData}
+        useRef={true}
+      />
+      {props.isOnwer ? (
+        <button
+          className={styles.changeProfileButton}
+          onClick={() => setEditMode(true)}
+        >
+          Изменить
+        </button>
+      ) : (
+        ""
+      )}
+    </div>
+  );
+
+  const editProfileDescription = (
+    <ProfileDescriptionForm profile={profile} contacts={contacts} />
+  );
+
   return (
     <div className={styles.profileInfo}>
       <PhotoBar
         isOnwer={props.isOnwer}
         profilePhoto={profile.photos.large}
-        saveUserAvatar={props.saveUserAvatar}
+        updatePhoto={props.updatePhoto}
       />
-
       <div className={styles.profileDescription}>
         <div className={styles.profileName}>{profile?.fullName}</div>
         <StatusBar
@@ -43,15 +70,7 @@ const ProfileInfo = (props) => {
           status={props.profilePage.status}
           updateStatus={props.updateStatus}
         />
-        <DescriptionBlock
-          descriptionName="Обо мне"
-          descriptionData={aboutMeData}
-        />
-        <DescriptionBlock
-          descriptionName="Контакты"
-          descriptionData={contactsData}
-          descriptionRef={true}
-        />
+        {editMode ? editProfileDescription : showProfileDescription}
       </div>
     </div>
   );

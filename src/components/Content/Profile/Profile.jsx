@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {
   getUserData,
   updateStatus,
-  saveAvatar,
+  updatePhoto,
 } from "../../../redux/profile.reducer";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -46,6 +46,6 @@ let mapStateToProps = (state) => {
 };
 
 export default compose(
-  connect(mapStateToProps, { getUserData, updateStatus, saveAvatar }),
+  connect(mapStateToProps, { getUserData, updateStatus, updatePhoto }),
   withAuthRedirect
 )(Profile);

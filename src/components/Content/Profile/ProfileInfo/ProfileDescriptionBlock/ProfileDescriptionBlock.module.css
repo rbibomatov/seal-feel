@@ -5,17 +5,27 @@
   border-radius: 5px;
   margin-bottom: 10px;
 }
-.descriptionInfo {
+
+.blockInfo {
   margin-left: 10px;
 }
-.descriptionName {
+
+.blockName {
   font-size: 22px;
   margin-bottom: 15px;
 }
-.descriptionItem {
+
+.blockItem {
   margin-bottom: 10px;
 }
-.descriptionItemHeader {
+
+.blockItemHeader {
   margin-right: 5px;
+  color: #6666ff;
+}
+
+.noDataElement {
+  font-size: large;
+  font-weight: 600;
   color: #6666ff;
 }

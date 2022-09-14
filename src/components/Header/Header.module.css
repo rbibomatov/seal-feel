@@ -7,7 +7,7 @@
 }
 
 .logo {
-  width: 160px;
+  width: 155px;
   margin-left: 10px;
 }
 
@@ -25,21 +25,41 @@
 .userName {
   display: inline-block;
   position: relative;
-  bottom: 13px;
+  bottom: 14px;
   color: black;
   font-size: 16pt;
 }
+
 .logoutBar {
   float: right;
-  margin-left: 20px;
+  margin-left: 15px;
+  position: relative;
+  bottom: 1px;
 }
 .logoutIcon {
-  width: 40px;
+  width: 15px;
   position: relative;
-  top: 7px;
-  margin-right: 5px;
+  right: 5px;
+  top: 2px;
 }
 .logoutButton {
+  width: 100px;
   position: relative;
-  bottom: 5px;
+  top: 10px;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  user-select: none;
+  padding: 7px 15px;
+  outline: none;
+  border: 2px solid;
+  border-radius: 1px;
+  transition: 0.2s;
+  background-color: rgba(253, 118, 118, 0.4);
+}
+.logoutButton:hover {
+  background-color: rgba(253, 118, 118, 0.75);
+}
+.logoutButton:active {
+  background-color: rgb(253, 118, 118);
 }

@@ -5,7 +5,7 @@
 }
 
 .followBar {
-  width: 100px;
+  width: 120px;
   grid-column: 1/2;
   margin-right: 15px;
 }
@@ -14,12 +14,42 @@
   display: block;
   width: 75px;
   border-radius: 50%;
-  margin: 0 auto 10px auto;
+  margin: 0 auto 5px auto;
+}
+
+.userButton {
+  display: block;
+  width: 110px;
+  margin: 0 auto;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  user-select: none;
+  padding: 5px 10px;
+  outline: none;
+  border: 2px solid;
+  border-radius: 1px;
+  transition: 0.2s;
 }
 
 .followButton {
-  display: block;
-  margin: 0 auto;
+  background-color: rgba(35, 226, 86, 0.4);
+}
+.followButton:hover {
+  background-color: rgba(35, 226, 86, 0.75);
+}
+.followButton:active {
+  background-color: rgb(35, 226, 86);
+}
+
+.unfollowButton {
+  background-color: rgba(253, 118, 118, 0.4);
+}
+.unfollowButton:hover {
+  background-color: rgba(253, 118, 118, 0.75);
+}
+.unfollowButton:active {
+  background-color: rgb(253, 118, 118);
 }
 
 .userInfo {

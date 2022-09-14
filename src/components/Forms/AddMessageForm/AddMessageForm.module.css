@@ -1,13 +1,4 @@
-.addPostForm {
-  margin: 0 0 20px 270px;
-}
-
-.postTextArea {
-  width: 80%;
-  height: 80px;
-}
-
-.addPostButton {
+.addMessageButton {
   color: white;
   font-weight: 700;
   text-decoration: none;
@@ -19,9 +10,9 @@
   transition: 0.2s;
   background-color: rgba(102, 102, 255, 0.4);
 }
-.addPostButton:hover {
+.addMessageButton:hover {
   background-color: rgba(102, 102, 255, 0.75);
 }
-.addPostButton:active {
-  background: rgb(102, 102, 255);
+.addMessageButton:active {
+  background-color: rgb(102, 102, 255);
 }

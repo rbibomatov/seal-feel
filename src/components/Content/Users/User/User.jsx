@@ -3,16 +3,20 @@ import { NavLink } from "react-router-dom";
 
 const User = (props) => {
   let followButton = (followed) => {
-    let buttonText, onClickButton;
+    let buttonText,
+      onClickButton,
+      buttonClass = styles.userButton;
 
     if (followed) {
       buttonText = "Отписаться";
+      buttonClass += " " + styles.unfollowButton;
 
       onClickButton = () => {
         props.unfollowUser(props.followingInProgress, props.id);
       };
     } else {
       buttonText = "Подписаться";
+      buttonClass += " " + styles.followButton;
 
       onClickButton = () => {
         props.followUser(props.id);
@@ -21,7 +25,7 @@ const User = (props) => {
 
     return (
       <button
-        className={styles.followButton}
+        className={buttonClass}
         onClick={onClickButton}
         disabled={props.followingInProgress.includes(props.id)}
       >

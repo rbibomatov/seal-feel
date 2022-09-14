@@ -36,12 +36,15 @@ export const profileAPI = {
       .get(`/profile/status/${userId}`)
       .then((response) => response.data);
   },
+  updateProfile(profile) {
+    return instance.put(`/profile/`, profile).then((response) => response.data);
+  },
   updateStatus(status) {
     return instance
       .put(`/profile/status/`, { status })
       .then((response) => response.data);
   },
-  saveAvatar(avatarFile) {
+  updatePhoto(avatarFile) {
     const formData = new FormData();
     formData.append("image", avatarFile);
 

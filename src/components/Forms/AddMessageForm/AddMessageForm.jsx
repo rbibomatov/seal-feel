@@ -1,3 +1,4 @@
+import styles from "./AddMessageForm.module.css";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addMessage } from "../../../redux/messages.reducer";
@@ -21,7 +22,11 @@ const AddMessageForm = (props) => {
         rows="5"
         placeholder="Введите свое сообщение..."
       ></textarea>
-      <button type="submit">Add</button>
+      <div>
+        <button className={styles.addMessageButton} type="submit">
+          Отправить
+        </button>
+      </div>
     </form>
   );
 };

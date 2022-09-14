@@ -5,6 +5,47 @@
 .profileAvatar {
   width: 200px;
 }
-.changeAvatarButton {
-  margin-top: 15px;
+
+.example .formGroup {
+  position: relative;
+  bottom: 235px;
+  right: 33px;
+  padding: 1em;
+  margin: 1em;
+}
+
+.example input[type="file"] {
+  outline: 0;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.example .label {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed grey;
+  border-radius: 5px;
+  background-color: rgba(102, 102, 102, 0.72);
+  display: block;
+  transition: border 300ms ease;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0;
+}
+.example .label:hover {
+  opacity: 1;
+}
+.example .label i {
+  display: block;
+  font-size: 42px;
+  padding-bottom: 16px;
+}
+.example .label i,
+.example .label .title {
+  color: black;
+  transition: 200ms color;
+}
+.example .label:hover i,
+.example .label:hover .title {
+  color: #000;
 }

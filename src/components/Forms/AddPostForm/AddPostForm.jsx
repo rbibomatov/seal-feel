@@ -22,7 +22,9 @@ const AddPostForm = (props) => {
         placeholder="Расскажите что-нибудь интересное!"
       ></textarea>
       <div>
-        <button type="submit">Опубликовать</button>
+        <button className={styles.addPostButton} type="submit">
+          Опубликовать
+        </button>
       </div>
     </form>
   );

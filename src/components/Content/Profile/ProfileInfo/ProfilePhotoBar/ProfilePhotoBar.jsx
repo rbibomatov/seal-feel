@@ -4,7 +4,8 @@ import defaultAvatar from "./../../../../../images/Common/DefaultUserAvatar.png"
 const ProfilePhotoBar = (props) => {
   const onAvatarSelected = (e) => {
     if (e.target.files.length) {
-      props.saveUserAvatar(e.target.files[0]);
+      // console.log(e.target.files[0]);
+      props.updatePhoto(e.target.files[0]);
     }
   };
 
@@ -16,12 +17,14 @@ const ProfilePhotoBar = (props) => {
         alt="Аватар пользователя"
       />
       {props.isOnwer && (
-        <div>
-          <input
-            className={styles.changeAvatarButton}
-            type="file"
-            onChange={onAvatarSelected}
-          />
+        <div className={styles.example}>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>
+              <i className={styles.materialIcons}>attach_file</i>
+              <span className={styles.title}>Добавить файл</span>
+              <input type="file" onChange={onAvatarSelected} />
+            </label>
+          </div>
         </div>
       )}
     </div>

@@ -1,0 +1,52 @@
+.formBlock {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.blockInfo {
+  margin-left: 10px;
+}
+
+.blockName {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.blockItem {
+  margin-bottom: 10px;
+}
+
+.blockItemHeader {
+  margin-right: 5px;
+  color: #6666ff;
+}
+
+input[type="text"] {
+  width: 600px;
+}
+
+input[type="url"] {
+  width: 350px;
+}
+
+.saveProfileButton {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  user-select: none;
+  padding: 0.5em 2em;
+  outline: none;
+  border: 2px solid;
+  border-radius: 1px;
+  transition: 0.2s;
+  background-color: rgba(102, 102, 255, 0.4);
+}
+.saveProfileButton:hover {
+  background-color: rgba(102, 102, 255, 0.75);
+}
+.saveProfileButton:active {
+  background-color: rgb(102, 102, 255);
+}

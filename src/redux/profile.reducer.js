@@ -3,7 +3,7 @@ import { profileAPI } from "../api/api";
 const SET_PROFILE_IN_PROGRESS = "profile/SET_PROFILE_IN_PROGRESS";
 const SET_USER_DATA = "profile/SET_USER_DATA";
 const SET_USER_STATUS = "profile/SET_USER_STATUS";
-const SET_USER_AVATAR = "profile/SET_USER_AVATAR";
+const SET_USER_PHOTO = "profile/SET_USER_PHOTO";
 const ADD_POST = "profile/ADD_POST";
 
 let initialState = {
@@ -31,10 +31,10 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         status: action.status,
       };
-    case SET_USER_AVATAR:
+    case SET_USER_PHOTO:
       return {
         ...state,
-        profile: { ...action.profile, photos: action.avatar },
+        profile: { ...state.profile, photos: action.photos },
       };
     case ADD_POST:
       let newPost = {
@@ -62,8 +62,8 @@ const setUserData = (profile, status) => {
 const setUserStatus = (status) => {
   return { type: SET_USER_STATUS, status };
 };
-const setUserAvatar = (avatar) => {
-  return { type: SET_USER_AVATAR, avatar };
+const setUserPhoto = (photos) => {
+  return { type: SET_USER_PHOTO, photos };
 };
 export const addPost = (newPostText, profileId) => {
   return { type: ADD_POST, newPostText, profileId };
@@ -81,6 +81,14 @@ export const getUserData = (userId) => async (dispatch) => {
   dispatch(toogleProfileInProgress(false));
 };
 
+export const updateProfile = (profile) => async (dispatch) => {
+  const profileData = await profileAPI.updateProfile(profile);
+
+  if (profileData.resultCode === 0) {
+    dispatch(getUserData(profile.userId));
+  }
+};
+
 export const updateStatus = (userStatus) => async (dispatch) => {
   const statusData = await profileAPI.updateStatus(userStatus);
 
@@ -89,11 +97,11 @@ export const updateStatus = (userStatus) => async (dispatch) => {
   }
 };
 
-export const saveAvatar = (file) => async (dispatch) => {
-  const avatarData = await profileAPI.saveAvatar(file);
+export const updatePhoto = (file) => async (dispatch) => {
+  const avatarData = await profileAPI.updatePhoto(file);
 
   if (avatarData.resultCode === 0) {
-    dispatch(setUserAvatar(avatarData.data.photos));
+    dispatch(setUserPhoto(avatarData.data.photos));
   }
 };
 
