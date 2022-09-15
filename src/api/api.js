@@ -44,9 +44,9 @@ export const profileAPI = {
       .put(`/profile/status/`, { status })
       .then((response) => response.data);
   },
-  updatePhoto(avatarFile) {
+  updatePhoto(photoFile) {
     const formData = new FormData();
-    formData.append("image", avatarFile);
+    formData.append("image", photoFile);
 
     return instance
       .put(`/profile/photo/`, formData)

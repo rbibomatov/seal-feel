@@ -15,7 +15,7 @@ const Header = (props) => {
         <NavLink to={`/profile/${auth.currentUser.id}`}>
           <div className={styles.profileBar}>
             <img
-              className={styles.userAvatar}
+              className={styles.userPhoto}
               src={auth.currentUser.photo}
               alt="Аватар пользователя"
             />

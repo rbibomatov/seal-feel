@@ -7,30 +7,55 @@ import { v4 as uuidv4 } from "uuid";
 import AddMessageForm from "../../Forms/AddMessageForm/AddMessageForm";
 
 const Messages = (props) => {
-  const messagesPage = useSelector((state) => state.messagesPage);
+  const dialogs = useSelector((state) => state.messagesPage.dialogs);
+  const messages = useSelector((state) => state.messagesPage.messages);
+  const activeRecipientId = useSelector(
+    (state) => state.messagesPage.activeRecipientId
+  );
 
-  let dialogsElements = messagesPage.dialogs.map((dialogData) => {
-    return <Dialog id={dialogData.id} key={uuidv4()} name={dialogData.name} />;
-  });
-  let messagesElements = messagesPage.messages.map((messageData) => {
+  const noDialogsElement = (
+    <div className={styles.noDialogsElement}>
+      Диалоги на текущий момент отсутствуют
+    </div>
+  );
+
+  const noMessagesElement = (
+    <div className={styles.noMessagesElement}>
+      Сообщения на текущий момент отсутствуют
+    </div>
+  );
+
+  const dialogsElements = dialogs.map((dialog) => {
     return (
-      <Message
-        id={messageData.id}
+      <Dialog
         key={uuidv4()}
-        message={messageData.message}
+        {...dialog}
+        activeRecipientId={activeRecipientId}
       />
     );
   });
 
-  return (
+  const messagesElements = messages.reduce((messages, message) => {
+    if (activeRecipientId === message.recipientId) {
+      messages.push(<Message key={uuidv4()} {...message} />);
+    }
+
+    return messages;
+  }, []);
+
+  const pageElement = (
     <div className={styles.dialogs}>
-      <div className={styles.dialogsItems}>{dialogsElements}</div>
-      <div className={styles.messages}>{messagesElements}</div>
+      <div>{dialogsElements}</div>
+      <div className={styles.messages}>
+        {messagesElements.length ? messagesElements : noMessagesElement}
+      </div>
       <div className={styles.newMessage}>
         <AddMessageForm />
       </div>
     </div>
   );
+
+  return dialogs.length ? pageElement : noDialogsElement;
 };
 
 export default withAuthRedirect(Messages);

@@ -7,10 +7,11 @@ import {
   followUser,
   unfollowUser,
 } from "../../../redux/users.reducer";
+import { addDialog } from "../../../redux/messages.reducer";
 import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Preloader from "../../Common/Preloader/Preloader";
-import defaultAvatar from "./../../../images/Common/DefaultUserAvatar.png";
+import defaultPhoto from "./../../../images/Common/DefaultUserPhoto.png";
 import PagesPanel from "./PagesPanel/PagesPanel";
 import User from "./User/User";
 
@@ -27,13 +28,11 @@ const Users = (props) => {
         <User
           key={uuidv4()}
           id={user.id}
-          photo={user.photos.large ? user.photos.large : defaultAvatar}
+          photo={user.photos.large ? user.photos.large : defaultPhoto}
           name={user.name}
           status={user.status}
           followed={user.followed}
-          followUser={props.followUser}
-          unfollowUser={props.unfollowUser}
-          followingInProgress={usersPage.followingInProgress}
+          {...props}
         />
       );
     });
@@ -61,6 +60,7 @@ export default compose(
     getUsers,
     followUser,
     unfollowUser,
+    addDialog,
   }),
   withAuthRedirect
 )(Users);

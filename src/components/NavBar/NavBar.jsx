@@ -9,18 +9,18 @@ const NavBar = (props) => {
   return (
     <nav className={styles.nav}>
       <div className={styles.linksWrapper}>
+        <NavBarLink to="/news" name="Новости" image={images.logoNews} />
         <NavBarLink
           to={"/profile/" + сurrentUserId}
           name="Профиль"
           image={images.logoProfile}
         />
-        <NavBarLink to="/news" name="Новости" image={images.logoNews} />
+        <NavBarLink to="/users" name="Пользователи" image={images.logoUsers} />
         <NavBarLink
           to="/messages"
           name="Сообщения"
           image={images.logoMessages}
         />
-        <NavBarLink to="/users" name="Пользователи" image={images.logoUsers} />
       </div>
     </nav>
   );

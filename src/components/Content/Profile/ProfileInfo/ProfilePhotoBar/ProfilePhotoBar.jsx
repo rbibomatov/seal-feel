@@ -1,30 +1,36 @@
 import styles from "./ProfilePhotoBar.module.css";
-import defaultAvatar from "./../../../../../images/Common/DefaultUserAvatar.png";
+import defaultPhoto from "./../../../../../images/Common/DefaultUserPhoto.png";
+import clip from "./../../../../../images/Content/Clip.png";
 
 const ProfilePhotoBar = (props) => {
-  const onAvatarSelected = (e) => {
+  const onPhotoSelected = (e) => {
     if (e.target.files.length) {
-      // console.log(e.target.files[0]);
       props.updatePhoto(e.target.files[0]);
     }
   };
 
   return (
-    <div className={styles.avatarBar}>
+    <div className={styles.photoBar}>
       <img
-        className={styles.profileAvatar}
-        src={props.profilePhoto || defaultAvatar}
+        className={styles.profilePhoto}
+        src={props.profilePhoto || defaultPhoto}
         alt="Аватар пользователя"
       />
       {props.isOnwer && (
-        <div className={styles.example}>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>
-              <i className={styles.materialIcons}>attach_file</i>
-              <span className={styles.title}>Добавить файл</span>
-              <input type="file" onChange={onAvatarSelected} />
-            </label>
-          </div>
+        <div className={styles.inputWindow}>
+          <label className={styles.inputWindowLabel}>
+            <div>
+              <img className={styles.clipIcon} src={clip} alt="Скрепка" />
+            </div>
+            <div>
+              <span className={styles.inputTitle}>Добавить файл</span>
+            </div>
+            <input
+              className={styles.inputFile}
+              type="file"
+              onChange={onPhotoSelected}
+            />
+          </label>
         </div>
       )}
     </div>

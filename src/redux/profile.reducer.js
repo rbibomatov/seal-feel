@@ -1,4 +1,5 @@
 import { profileAPI } from "../api/api";
+import { setCurrentUserPhoto } from "./auth.reducer";
 
 const SET_PROFILE_IN_PROGRESS = "profile/SET_PROFILE_IN_PROGRESS";
 const SET_USER_DATA = "profile/SET_USER_DATA";
@@ -98,10 +99,12 @@ export const updateStatus = (userStatus) => async (dispatch) => {
 };
 
 export const updatePhoto = (file) => async (dispatch) => {
-  const avatarData = await profileAPI.updatePhoto(file);
+  const photoData = await profileAPI.updatePhoto(file);
 
-  if (avatarData.resultCode === 0) {
-    dispatch(setUserPhoto(avatarData.data.photos));
+  if (photoData.resultCode === 0) {
+    const photos = photoData.data.photos;
+    dispatch(setUserPhoto(photos));
+    dispatch(setCurrentUserPhoto(photos.large));
   }
 };
 

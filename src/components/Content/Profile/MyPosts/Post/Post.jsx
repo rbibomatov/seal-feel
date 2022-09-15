@@ -1,12 +1,12 @@
 import styles from "./Post.module.css";
-import defaultAvatar from "./../../../../../images/Common/DefaultUserAvatar.png";
+import defaultPhoto from "./../../../../../images/Common/DefaultUserPhoto.png";
 
 const Post = (props) => {
   return (
     <div className={styles.post}>
       <img
-        className={styles.userAvatar}
-        src={props.currentUserPhoto || defaultAvatar}
+        className={styles.userPhoto}
+        src={props.currentUserPhoto || defaultPhoto}
         alt=""
       />
       <div className={styles.postText}>

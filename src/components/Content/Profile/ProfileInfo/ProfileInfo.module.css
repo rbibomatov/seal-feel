@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 215px 9fr;
   grid-template-rows: auto auto;
-  grid-template-areas: "avatar description";
+  grid-template-areas: "photo description";
   gap: 20px;
   margin: 30px 25px 10px 25px;
 }

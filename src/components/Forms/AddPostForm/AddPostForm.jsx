@@ -12,17 +12,30 @@ const AddPostForm = (props) => {
     reset();
   };
 
+  const onKeyDown = (e) => {
+    if ((e.key === "Enter" || e.code === "NumpadEnter") && !e.shiftKey) {
+      e.preventDefault();
+      document.getElementById("addPostButton").click();
+    }
+  };
+
   return (
     <form className={styles.addPostForm} onSubmit={handleSubmit(onSubmit)}>
       <textarea
         className={styles.postTextArea}
         {...register("postText", {
           required: true,
+          maxLength: 1000,
         })}
         placeholder="Расскажите что-нибудь интересное!"
+        onKeyDown={onKeyDown}
       ></textarea>
       <div>
-        <button className={styles.addPostButton} type="submit">
+        <button
+          id="addPostButton"
+          className={styles.addPostButton}
+          type="submit"
+        >
           Опубликовать
         </button>
       </div>

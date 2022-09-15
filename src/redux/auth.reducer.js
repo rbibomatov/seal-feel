@@ -1,5 +1,5 @@
 import { authAPI, profileAPI } from "../api/api";
-import defaultAvatar from "./../images/Common/DefaultUserAvatar.png";
+import defaultPhoto from "./../images/Common/DefaultUserPhoto.png";
 
 const GET_CAPTCHA_URL = "auth/GET_CAPTCHA_URL";
 const SET_CURRENT_USER_DATA = "auth/SET_CURRENT_USER_DATA";
@@ -14,7 +14,7 @@ let initialState = {
     id: null,
     email: null,
     login: null,
-    photo: defaultAvatar,
+    photo: defaultPhoto,
   },
 };
 
@@ -97,7 +97,7 @@ export const getAuthUserData = () => async (dispatch) => {
     const stringId = String(id);
 
     const {
-      photos: { large: photo = defaultAvatar },
+      photos: { large: photo = defaultPhoto },
     } = await profileAPI.getProfile(id);
 
     dispatch(setCurrentUserData(stringId, email, login, photo));

@@ -1,4 +1,34 @@
 .message {
+  display: grid;
+  grid-template-columns: 70px 800px;
+  grid-template-areas: "avatar info";
+  margin-bottom: 20px;
+}
+
+.senderPhoto {
+  grid-area: avatar;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.infoBar {
+  grid-area: info;
+  padding-top: 3px;
+}
+
+.senderName {
+  padding: 0 5px;
+  font-size: 16pt;
+}
+
+.sendTime {
+  padding: 0 5px;
+  font-size: 12pt;
+  color: #6666ff;
+}
+
+.messageText {
+  white-space: pre-wrap;
+  word-wrap: break-word;
   padding: 5px;
-  color: white;
 }

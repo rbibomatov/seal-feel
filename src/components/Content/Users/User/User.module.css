@@ -10,9 +10,9 @@
   margin-right: 15px;
 }
 
-.userAvatar {
+.userPhoto {
   display: block;
-  width: 75px;
+  width: 60px;
   border-radius: 50%;
   margin: 0 auto 5px auto;
 }
@@ -20,7 +20,7 @@
 .userButton {
   display: block;
   width: 110px;
-  margin: 0 auto;
+  margin: 0 auto 5px auto;
   color: white;
   font-weight: 700;
   text-decoration: none;
@@ -52,6 +52,19 @@
   background-color: rgb(253, 118, 118);
 }
 
+.messageButtonWrapper {
+  text-decoration: none;
+}
+.messageButton {
+  background-color: rgba(102, 102, 255, 0.4);
+}
+.messageButton:hover {
+  background-color: rgba(102, 102, 255, 0.75);
+}
+.messageButton:active {
+  background-color: rgb(253, 118, 118);
+}
+
 .userInfo {
   grid-column: 2/3;
   border: 1px gray solid;
@@ -66,4 +79,6 @@
 
 .userStatus {
   margin: 10px;
+  position: relative;
+  top: 10px;
 }

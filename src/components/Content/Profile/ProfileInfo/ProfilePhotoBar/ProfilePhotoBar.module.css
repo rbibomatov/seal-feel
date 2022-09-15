@@ -1,51 +1,49 @@
-.avatarBar {
-  grid-area: avatar;
+.photoBar {
+  grid-area: photo;
   margin: 10px 0 0 20px;
 }
-.profileAvatar {
+
+.profilePhoto {
   width: 200px;
 }
 
-.example .formGroup {
+.inputWindow {
   position: relative;
-  bottom: 235px;
-  right: 33px;
-  padding: 1em;
-  margin: 1em;
+  bottom: 205px;
 }
 
-.example input[type="file"] {
-  outline: 0;
-  opacity: 0;
-  pointer-events: none;
-  user-select: none;
-}
-.example .label {
-  width: 200px;
-  height: 200px;
-  border: 2px dashed grey;
-  border-radius: 5px;
-  background-color: rgba(102, 102, 102, 0.72);
+.inputWindowLabel {
   display: block;
+  width: 190px;
+  height: 192px;
+  border: 5px dashed black;
+  background-color: rgba(143, 131, 131, 0.767);
   transition: border 300ms ease;
   cursor: pointer;
   text-align: center;
   opacity: 0;
 }
-.example .label:hover {
+
+.inputWindowLabel:hover {
   opacity: 1;
 }
-.example .label i {
-  display: block;
-  font-size: 42px;
-  padding-bottom: 16px;
+
+.clipIcon {
+  width: 75px;
+  position: relative;
+  top: 25px;
 }
-.example .label i,
-.example .label .title {
-  color: black;
-  transition: 200ms color;
+
+.inputTitle {
+  position: relative;
+  top: 40px;
+  font-size: 16pt;
+  font-weight: 600;
 }
-.example .label:hover i,
-.example .label:hover .title {
-  color: #000;
+
+.inputFile {
+  outline: 0;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
 }
