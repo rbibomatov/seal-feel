@@ -2,9 +2,15 @@ import styles from "./AddPostForm.module.css";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addPost } from "../../../redux/profile.reducer";
+import ValidationMessage from "../../Common/ValidationMessage/ValidationMessage";
 
 const AddPostForm = (props) => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
@@ -24,12 +30,16 @@ const AddPostForm = (props) => {
       <textarea
         className={styles.postTextArea}
         {...register("postText", {
-          required: true,
-          maxLength: 1000,
+          required: "Пожалуйста, заполните поле",
+          maxLength: {
+            value: 1000,
+            message: "Длина текста не должна превышать 1000 символов",
+          },
         })}
         placeholder="Расскажите что-нибудь интересное!"
         onKeyDown={onKeyDown}
       ></textarea>
+      <ValidationMessage messageText={errors?.postText?.message} />
       <div>
         <button
           id="addPostButton"

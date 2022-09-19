@@ -1,3 +1,4 @@
+import styles from "./LoginPage.module.css";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import LoginForm from "../Forms/LoginForm/LoginForm";
@@ -10,8 +11,7 @@ const LoginPage = (props) => {
     return <Navigate to={"/profile/" + userId} />;
   } else {
     return (
-      <div>
-        <h1>Login</h1>
+      <div className={styles.loginPage}>
         <LoginForm />
       </div>
     );

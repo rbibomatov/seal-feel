@@ -25,6 +25,7 @@ export const initialize = () => {
 
 export const initializeApp = () => async (dispatch) => {
   await dispatch(getAuthUserData());
+
   dispatch(initialize());
 };
 

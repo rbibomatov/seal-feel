@@ -2,10 +2,15 @@ import styles from "./AddMessageForm.module.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../../../redux/messages.reducer";
-import { getLCP } from "web-vitals";
+import ValidationMessage from "../../Common/ValidationMessage/ValidationMessage";
 
 const AddMessageForm = (props) => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
 
   const currentUser = useSelector((state) => state.auth.currentUser);
   const recipientId = useSelector(
@@ -30,12 +35,16 @@ const AddMessageForm = (props) => {
       <textarea
         className={styles.addMessageArea}
         {...register("messageText", {
-          required: true,
-          maxLength: 1000,
+          required: "Пожалуйста, заполните поле",
+          maxLength: {
+            value: 1000,
+            message: "Длина текста не должна превышать 1000 символов",
+          },
         })}
         placeholder="Введите свое сообщение..."
         onKeyDown={onKeyDown}
       ></textarea>
+      <ValidationMessage messageText={errors?.messageText?.message} />
       <div>
         <button
           id="addMessageButton"

@@ -16,17 +16,21 @@
 }
 
 .noDialogsElement {
+  width: 800px;
+  height: 150px;
   font-size: xx-large;
   color: #6666ff;
   position: relative;
-  left: 27%;
+  left: 30%;
   top: 40%;
 }
 
 .noMessagesElement {
+  width: 700px;
+  height: 150px;
   font-size: xx-large;
   color: #6666ff;
   position: relative;
-  left: 12%;
+  left: 13%;
   top: 40%;
 }

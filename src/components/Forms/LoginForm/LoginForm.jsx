@@ -1,9 +1,17 @@
+import styles from "./LoginForm.module.css";
+import logo from "./../../../images/Content/Logo.png";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../../redux/auth.reducer";
+import ValidationMessage from "../../Common/ValidationMessage/ValidationMessage";
 
 const LoginForm = (props) => {
-  const { register, handleSubmit } = useForm();
+  const incorrectLogin = useSelector((state) => state.auth.incorrectLogin);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
@@ -12,30 +20,41 @@ const LoginForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
+      <h1 className={styles.formHeader}>Авторизация</h1>
+      <img className={styles.logo} src={logo} alt="" />
+      <div className={styles.formItem}>
+        <b className={styles.formItemHeader}>Email:</b>
         <input
           type="email"
           {...register("email", {
-            required: true,
+            required: "Пожалуйста, заполните поле",
           })}
           placeholder="email"
         />
+        <ValidationMessage messageText={errors?.email?.message} />
       </div>
-      <div>
+      <div className={styles.formItem}>
+        <b className={styles.formItemHeader}>Пароль:</b>
         <input
           type="password"
           {...register("password", {
-            required: true,
+            required: "Пожалуйста, заполните поле",
           })}
-          autocomplete="on"
+          autoComplete="on"
           placeholder="Password"
         />
+        <ValidationMessage messageText={errors?.password?.message} />
       </div>
-      <div>
+      <div className={styles.formItem}>
         <input type="checkbox" {...register("rememberMe")} /> Запомнить меня
       </div>
-      <div>
-        <button type="submit">Login</button>
+      <ValidationMessage
+        messageText={incorrectLogin ? "Неверный логин или пароль" : null}
+      />
+      <div className={styles.loginButtonWrapper}>
+        <button className={styles.loginButton} type="submit">
+          Войти
+        </button>
       </div>
     </form>
   );

@@ -7,6 +7,31 @@
   width: 200px;
 }
 
+.addMessageButtonWrapper {
+  text-decoration: none;
+}
+
+.addMessageButton {
+  width: 200px;
+  margin-top: 10px;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  user-select: none;
+  padding: 0.5em 2em;
+  outline: none;
+  border: 2px solid;
+  border-radius: 1px;
+  transition: 0.2s;
+  background-color: rgba(102, 102, 255, 0.4);
+}
+.addMessageButton:hover {
+  background-color: rgba(102, 102, 255, 0.75);
+}
+.addMessageButton:active {
+  background-color: rgb(102, 102, 255);
+}
+
 .inputWindow {
   position: relative;
   bottom: 205px;

@@ -27,7 +27,7 @@ const ProfileDescriptionBlock = (props) => {
             </span>
             {useRef ? (
               <a
-                href={profileElement}
+                href={"//" + profileElement}
                 target="_blank"
                 rel="noopener noreferrer"
               >

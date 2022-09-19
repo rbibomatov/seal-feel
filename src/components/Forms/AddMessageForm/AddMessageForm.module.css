@@ -1,6 +1,10 @@
 .addMessageArea {
   width: 900px;
+  min-width: 900px;
+  max-width: 900px;
   height: 50px;
+  min-height: 30px;
+  max-height: 100px;
 }
 
 .addMessageButton {

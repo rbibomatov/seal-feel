@@ -1,0 +1,12 @@
+.validationMessageWrapper {
+  margin: 5px 0;
+}
+
+.validationMessage {
+  color: #bf1650;
+}
+
+.validationMessage::before {
+  display: inline;
+  content: "⚠ ";
+}

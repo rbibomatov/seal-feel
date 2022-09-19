@@ -18,24 +18,25 @@ const Messages = React.lazy(() =>
 
 const App = () => {
   const initialized = useSelector((state) => state.app.initialized);
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(initializeApp());
-  }, []);
+  }, [initialized]);
 
   if (initialized) {
     return (
       <div className="app-wrapper">
         <Header />
-        <NavBar />
+        {isAuth ? <NavBar /> : null}
         <div className="app-wrapper-content">
           <React.Suspense fallback={<Preloader />}>
             <Routes>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/profile/:profileId" element={<Profile />} />
-              <Route path="/messages/*" element={<Messages />} />
-              <Route path="/users/*" element={<Users />} />
+              <Route path="/messages/" element={<Messages />} />
+              <Route path="/users/" element={<Users />} />
             </Routes>
           </React.Suspense>
         </div>

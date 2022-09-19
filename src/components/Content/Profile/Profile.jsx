@@ -6,6 +6,7 @@ import {
   updateStatus,
   updatePhoto,
 } from "../../../redux/profile.reducer";
+import { addDialog } from "../../../redux/messages.reducer";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import Preloader from "../../Common/Preloader/Preloader";
@@ -46,6 +47,11 @@ let mapStateToProps = (state) => {
 };
 
 export default compose(
-  connect(mapStateToProps, { getUserData, updateStatus, updatePhoto }),
+  connect(mapStateToProps, {
+    getUserData,
+    updateStatus,
+    updatePhoto,
+    addDialog,
+  }),
   withAuthRedirect
 )(Profile);

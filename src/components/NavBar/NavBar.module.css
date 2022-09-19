@@ -1,4 +1,5 @@
 .nav {
+  width: 255px;
   grid-area: n;
   background-color: #d0f4f7;
   margin: 15px 15px 10px 5px;

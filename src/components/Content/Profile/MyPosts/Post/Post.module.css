@@ -1,7 +1,7 @@
 .post {
-  width: 1180px;
+  width: 1250px;
   display: grid;
-  grid-template-columns: 80px 1100px;
+  grid-template-columns: 80px 1170px;
   grid-template-rows: auto auto auto;
   border: 1px solid grey;
   margin: 10px auto;

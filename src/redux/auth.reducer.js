@@ -1,15 +1,15 @@
 import { authAPI, profileAPI } from "../api/api";
 import defaultPhoto from "./../images/Common/DefaultUserPhoto.png";
 
-const GET_CAPTCHA_URL = "auth/GET_CAPTCHA_URL";
 const SET_CURRENT_USER_DATA = "auth/SET_CURRENT_USER_DATA";
 const SET_CURRENT_USER_PHOTO = "auth/SET_USER_DATA";
+const SET_INCORRECT_LOGIN = "auth/SET_INCORRECT_LOGIN";
 const DELETE_CURRENT_USER_DATA = "auth/DELETE_USER_DATA";
 
 let initialState = {
   isFetching: false,
   isAuth: false,
-  captchaURL: "",
+  incorrectLogin: false,
   currentUser: {
     id: null,
     email: null,
@@ -20,15 +20,11 @@ let initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_CAPTCHA_URL:
-      return {
-        ...state,
-        captchaURL: action.captchaURL,
-      };
     case SET_CURRENT_USER_DATA:
       return {
         ...state,
         isAuth: true,
+        incorrectLogin: false,
         currentUser: {
           ...action.userData,
         },
@@ -41,6 +37,11 @@ const authReducer = (state = initialState, action) => {
           photo: action.photo,
         },
       };
+    case SET_INCORRECT_LOGIN:
+      return {
+        ...state,
+        incorrectLogin: true,
+      };
     case DELETE_CURRENT_USER_DATA:
       return {
         ...initialState,
@@ -50,14 +51,14 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export const getCaptchaURL = (captchaURL) => {
-  return { type: GET_CAPTCHA_URL, captchaURL };
-};
 export const setCurrentUserData = (id, email, login, photo) => {
   return { type: SET_CURRENT_USER_DATA, userData: { id, email, login, photo } };
 };
 export const setCurrentUserPhotoAC = (photo) => {
   return { type: SET_CURRENT_USER_PHOTO, photo };
+};
+export const setIncorrectLogin = () => {
+  return { type: SET_INCORRECT_LOGIN };
 };
 export const deleteCurrentUserData = () => {
   return { type: DELETE_CURRENT_USER_DATA };
@@ -65,20 +66,11 @@ export const deleteCurrentUserData = () => {
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
   const authData = await authAPI.login(email, password, rememberMe);
-
   if (authData.resultCode === 0) {
     dispatch(getAuthUserData());
-  } else if (authData.resultCode === 10) {
-    dispatch(getCaptcha());
-  } else {
-    ////
+  } else if (authData.resultCode === 1) {
+    dispatch(setIncorrectLogin());
   }
-};
-
-export const getCaptcha = () => async (dispatch) => {
-  const captcha = await authAPI.captcha();
-
-  dispatch(getCaptchaURL(captcha));
 };
 
 export const logout = () => async (dispatch) => {
@@ -102,6 +94,8 @@ export const getAuthUserData = () => async (dispatch) => {
 
     dispatch(setCurrentUserData(stringId, email, login, photo));
   }
+
+  return authData.resultCode;
 };
 
 export const setCurrentUserPhoto = (photo) => (dispatch) => {

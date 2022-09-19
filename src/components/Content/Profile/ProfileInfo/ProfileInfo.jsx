@@ -31,6 +31,15 @@ const ProfileInfo = (props) => {
     ],
   ];
 
+  const changeProfileButton = (
+    <button
+      className={styles.changeProfileButton}
+      onClick={() => setEditMode(true)}
+    >
+      Изменить
+    </button>
+  );
+
   const showProfileDescription = (
     <div>
       <DescriptionBlock blockName="Обо мне" blockData={aboutMeData} />
@@ -39,16 +48,7 @@ const ProfileInfo = (props) => {
         blockData={contactsData}
         useRef={true}
       />
-      {props.isOnwer ? (
-        <button
-          className={styles.changeProfileButton}
-          onClick={() => setEditMode(true)}
-        >
-          Изменить
-        </button>
-      ) : (
-        ""
-      )}
+      {props.isOnwer ? changeProfileButton : null}
     </div>
   );
 
@@ -60,11 +60,14 @@ const ProfileInfo = (props) => {
     <div className={styles.profileInfo}>
       <PhotoBar
         isOnwer={props.isOnwer}
-        profilePhoto={profile.photos.large}
+        userId={profile.userId}
+        userName={profile.fullName}
+        userPhoto={profile.photos.large}
         updatePhoto={props.updatePhoto}
+        addDialog={props.addDialog}
       />
       <div className={styles.profileDescription}>
-        <div className={styles.profileName}>{profile?.fullName}</div>
+        <div className={styles.profileName}>{profile.fullName}</div>
         <StatusBar
           isOnwer={props.isOnwer}
           status={props.profilePage.status}

@@ -2,9 +2,14 @@ import styles from "./ProfileDescriptionForm.module.css";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { updateProfile } from "../../../redux/profile.reducer";
+import ValidationMessage from "../../Common/ValidationMessage/ValidationMessage";
 
 const ProfileDescriptionForm = (props) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
   const userId = useSelector((state) => state.auth.currentUser.id);
   const userFullName = useSelector((state) => state.auth.currentUser.login);
@@ -33,11 +38,16 @@ const ProfileDescriptionForm = (props) => {
             <input
               type="text"
               {...register("aboutMe", {
-                required: true,
+                required: "Пожалуйста, заполните поле",
+                maxLength: {
+                  value: 50,
+                  message: "Длина текста не должна превышать 50 символов",
+                },
               })}
               defaultValue={profile.aboutMe}
               placeholder="Я самый красивый и хороший"
             />
+            <ValidationMessage messageText={errors?.aboutMe?.message} />
           </div>
           <div className={styles.blockItem}>
             <b className={styles.blockItemHeader}>Ищу работу:</b>
