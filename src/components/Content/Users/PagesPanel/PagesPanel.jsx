@@ -49,9 +49,9 @@ const PagesPanel = (props) => {
   });
 
   return (
-    <div>
+    <>
       <div className={styles.pagePanel}>{pagesElements}</div>
-    </div>
+    </>
   );
 };
 

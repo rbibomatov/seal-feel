@@ -22,7 +22,7 @@ const Profile = (props) => {
 
   if (!props.profilePage.profileInProgress && props.profilePage.profile) {
     return (
-      <div>
+      <>
         <ProfileInfo {...props} isOnwer={props.currentUserId === profileId} />
         <MyPosts
           posts={props.profilePage.posts}
@@ -30,7 +30,7 @@ const Profile = (props) => {
           currentUserPhoto={props.currentUserPhoto}
           profileId={profileId}
         />
-      </div>
+      </>
     );
   } else {
     return <Preloader />;

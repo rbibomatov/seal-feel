@@ -9,7 +9,6 @@ const NavBar = (props) => {
   return (
     <nav className={styles.nav}>
       <div className={styles.linksWrapper}>
-        <NavBarLink to="/news" name="Новости" image={images.logoNews} />
         <NavBarLink
           to={"/profile/" + сurrentUserId}
           name="Профиль"

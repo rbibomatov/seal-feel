@@ -38,10 +38,10 @@ const Users = (props) => {
     });
 
     return (
-      <div>
+      <>
         <PagesPanel {...props} />
         {usersElements}
-      </div>
+      </>
     );
   } else {
     return <Preloader />;
